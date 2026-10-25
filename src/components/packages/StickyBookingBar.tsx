@@ -14,17 +14,21 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
   const [plannerOpen, setPlannerOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setVisible(window.scrollY > 400);
+    const handler = () => setVisible(window.scrollY > 420);
     window.addEventListener("scroll", handler, { passive: true });
+    handler(); // check immediately
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  if (!visible) return null;
-
   return (
     <>
-      {/* Mobile sticky bottom bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-surface-grey px-4 py-3 flex items-center gap-3 shadow-modal">
+      {/* Mobile sticky bottom bar — slides up from below */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-surface-grey px-4 py-3 flex items-center gap-3 shadow-modal transition-transform duration-300 ease-premium ${
+          visible ? "translate-y-0" : "translate-y-full"
+        }`}
+        aria-hidden={!visible}
+      >
         <div className="flex-1 min-w-0">
           {pkg.startingPrice && (
             <p className="text-body-sm text-brand-muted truncate">
@@ -33,7 +37,7 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
                 PKR {pkg.startingPrice.toLocaleString("en-PK")}
               </span>
               {pkg.isSamplePricing && (
-                <span className="text-brand-muted/50 text-body-sm"> (sample)</span>
+                <span className="text-brand-muted/40 text-body-sm"> (sample)</span>
               )}
             </p>
           )}
@@ -42,6 +46,7 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
         <button
           onClick={() => setPlannerOpen(true)}
           className="shrink-0 bg-brand-blue text-white text-label font-semibold px-4 py-2.5 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[44px]"
+          tabIndex={visible ? 0 : -1}
         >
           Check dates
         </button>
@@ -51,12 +56,12 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
           rel="noopener noreferrer"
           className="shrink-0 w-10 h-10 flex items-center justify-center bg-surface-grey rounded-btn text-brand-muted hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
           aria-label="WhatsApp"
+          tabIndex={visible ? 0 : -1}
         >
           <MessageCircle size={18} />
         </a>
       </div>
 
-      {/* Desktop sticky side card — rendered inline in the page layout */}
       {plannerOpen && (
         <TripPlanner
           config={pkg.plannerConfig}
@@ -74,15 +79,15 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
 
   return (
     <>
-      <div className="sticky top-24 bg-white rounded-card border border-surface-grey shadow-card p-6">
+      <div className="sticky top-24 bg-white rounded-card border border-surface-grey shadow-card p-6 transition-shadow duration-300 hover:shadow-card-hover">
         {pkg.startingPrice && (
-          <div className="mb-4">
+          <div className="mb-5">
             <p className="text-body-sm text-brand-muted">Starting from</p>
-            <p className="font-sans text-price text-brand-blue mt-0.5">
+            <p className="font-serif text-display-sm text-brand-blue mt-0.5">
               PKR {pkg.startingPrice.toLocaleString("en-PK")}
             </p>
             {pkg.isSamplePricing && (
-              <p className="text-body-sm text-brand-muted/50 italic mt-0.5">Sample pricing</p>
+              <p className="text-body-sm text-brand-muted/40 italic mt-0.5">Sample pricing</p>
             )}
           </div>
         )}
@@ -98,9 +103,12 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
           </div>
         </div>
 
+        {/* Gold accent line */}
+        <div className="h-px bg-brand-gold/25 mb-5" />
+
         <button
           onClick={() => setPlannerOpen(true)}
-          className="w-full bg-brand-blue text-white text-label font-semibold py-3 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[44px] mb-3"
+          className="w-full bg-brand-blue text-white text-label font-semibold py-3.5 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[48px] mb-3"
         >
           Check availability for my dates
         </button>
@@ -109,7 +117,7 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
           href="https://wa.me/923001234567"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 border border-brand-blue text-brand-blue text-label font-semibold py-2.5 rounded-btn hover:bg-brand-blue/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[44px]"
+          className="w-full flex items-center justify-center gap-2 border border-brand-blue/30 text-brand-blue text-label font-semibold py-2.5 rounded-btn hover:bg-brand-blue/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[44px]"
         >
           <MessageCircle size={15} />
           Message on WhatsApp

@@ -20,7 +20,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
 
   useEffect(() => {
     if (!paused) {
-      intervalRef.current = setInterval(next, 5000);
+      intervalRef.current = setInterval(next, 5500);
     }
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -30,9 +30,15 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
   return (
     <section className="bg-surface-grey py-16 md:py-24 overflow-hidden">
       <div className="max-w-content mx-auto px-4 md:px-8">
-        <h2 className="font-serif text-display-md text-brand-ink text-center mb-12">
-          What our travelers say
-        </h2>
+
+        <div className="text-center mb-12">
+          <p className="text-eyebrow uppercase tracking-widest text-brand-gold mb-3">
+            Traveler stories
+          </p>
+          <h2 className="font-serif text-display-md text-brand-ink">
+            What our travelers say
+          </h2>
+        </div>
         {/* NOTE: All testimonials are sample data until replaced with real reviews */}
 
         <div
@@ -44,10 +50,10 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
         >
           {/* Cards */}
           <div className="flex items-center justify-center gap-4 md:gap-6">
-            {/* Prev card (partially visible) */}
+            {/* Prev card */}
             {testimonials.length > 1 && (
               <div
-                className="hidden md:block w-64 shrink-0 opacity-40 scale-90 transition-all duration-300"
+                className="hidden md:block w-72 shrink-0 opacity-35 scale-[0.88] transition-all duration-500 ease-premium pointer-events-none"
                 aria-hidden="true"
               >
                 <TestimonialCard
@@ -56,15 +62,15 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
               </div>
             )}
 
-            {/* Active card */}
-            <div className="w-full max-w-lg shrink-0 transition-all duration-300">
-              <TestimonialCard testimonial={testimonials[active]} featured />
+            {/* Active card — cross-fade key forces remount on change */}
+            <div className="w-full max-w-lg shrink-0">
+              <TestimonialCard key={active} testimonial={testimonials[active]} featured />
             </div>
 
-            {/* Next card (partially visible) */}
+            {/* Next card */}
             {testimonials.length > 1 && (
               <div
-                className="hidden md:block w-64 shrink-0 opacity-40 scale-90 transition-all duration-300"
+                className="hidden md:block w-72 shrink-0 opacity-35 scale-[0.88] transition-all duration-500 ease-premium pointer-events-none"
                 aria-hidden="true"
               >
                 <TestimonialCard
@@ -78,13 +84,12 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border border-surface-grey bg-white flex items-center justify-center text-brand-muted hover:text-brand-blue hover:border-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              className="w-10 h-10 rounded-full border border-surface-grey bg-white flex items-center justify-center text-brand-muted hover:text-brand-gold hover:border-brand-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={18} />
             </button>
 
-            {/* Dots */}
             <div className="flex gap-2" role="tablist">
               {testimonials.map((_, i) => (
                 <button
@@ -94,8 +99,8 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
                   aria-label={`Testimonial ${i + 1}`}
                   onClick={() => setActive(i)}
                   className={cn(
-                    "w-2 h-2 rounded-full transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
-                    i === active ? "bg-brand-blue w-5" : "bg-brand-muted/40"
+                    "h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
+                    i === active ? "bg-brand-gold w-6" : "bg-brand-muted/30 w-1.5"
                   )}
                 />
               ))}
@@ -103,7 +108,7 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
 
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border border-surface-grey bg-white flex items-center justify-center text-brand-muted hover:text-brand-blue hover:border-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              className="w-10 h-10 rounded-full border border-surface-grey bg-white flex items-center justify-center text-brand-muted hover:text-brand-gold hover:border-brand-gold/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
               aria-label="Next testimonial"
             >
               <ChevronRight size={18} />
@@ -125,10 +130,14 @@ function TestimonialCard({
   return (
     <div
       className={cn(
-        "bg-white rounded-card p-6 md:p-8",
-        featured && "shadow-card"
+        "bg-white rounded-card p-6 md:p-8 transition-all duration-500",
+        featured ? "shadow-card-hover opacity-100 scale-100" : "opacity-0 scale-95"
       )}
+      style={featured ? { animation: "fadeUpReveal 0.45s cubic-bezier(0.16,1,0.3,1) both" } : undefined}
     >
+      {/* Gold quote mark */}
+      <p className="font-serif text-5xl text-brand-gold/30 leading-none mb-1 select-none">&ldquo;</p>
+
       {/* Stars */}
       <div className="flex gap-0.5 mb-4">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
@@ -137,8 +146,8 @@ function TestimonialCard({
       </div>
 
       {/* Quote */}
-      <p className="text-body-lg text-brand-ink leading-relaxed mb-5">
-        &ldquo;{testimonial.quote}&rdquo;
+      <p className="text-body-lg text-brand-ink leading-relaxed mb-6">
+        {testimonial.quote}
       </p>
 
       {/* Reviewer */}
@@ -147,12 +156,12 @@ function TestimonialCard({
           <Image
             src={testimonial.photo}
             alt={testimonial.name}
-            width={40}
-            height={40}
+            width={44}
+            height={44}
             className="rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue font-semibold text-label">
+          <div className="w-11 h-11 bg-brand-gold/15 rounded-full flex items-center justify-center text-brand-gold font-semibold text-label shrink-0">
             {testimonial.name[0]}
           </div>
         )}
@@ -163,7 +172,7 @@ function TestimonialCard({
       </div>
 
       {testimonial.isSampleData && (
-        <p className="mt-3 text-body-sm text-brand-muted/50 italic">
+        <p className="mt-4 text-body-sm text-brand-muted/40 italic">
           Sample testimonial — to be replaced with verified review
         </p>
       )}

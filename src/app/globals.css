@@ -21,19 +21,16 @@
     background-color: #ffffff;
   }
 
-  /* Focus visible — never remove */
   :focus-visible {
     outline: 2px solid #0756A4;
     outline-offset: 2px;
   }
 
-  /* Selection */
   ::selection {
     background-color: #0756A4;
     color: white;
   }
 
-  /* Remove default list styles in nav */
   nav ul, nav ol {
     list-style: none;
     padding: 0;
@@ -42,7 +39,6 @@
 }
 
 @layer utilities {
-  /* Hide scrollbar but keep scroll functionality */
   .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -51,13 +47,105 @@
     display: none;
   }
 
-  /* Prose heading anchors */
   .prose-anchor {
     scroll-margin-top: 5rem;
   }
 }
 
-/* Reduced motion */
+/* ─── Keyframes ─────────────────────────────────────────────────────────────── */
+
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%      { transform: translateY(-14px) rotate(1.5deg); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(0px) rotate(2.5deg); }
+  50%      { transform: translateY(-10px) rotate(-1deg); }
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(100%); opacity: 0.8; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+@keyframes scaleInModal {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fadeUpReveal {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lineExpand {
+  from { transform: scaleX(0); transform-origin: left center; }
+  to   { transform: scaleX(1); transform-origin: left center; }
+}
+
+@keyframes pinPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  60%      { opacity: 0;   transform: scale(2.8); }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ─── Animation utility classes ──────────────────────────────────────────────── */
+
+.animate-hero-zoom {
+  animation: heroZoom 10s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float-a {
+  animation: floatA 8s ease-in-out infinite;
+}
+
+.animate-float-b {
+  animation: floatB 11s ease-in-out infinite;
+}
+
+.animate-slide-up-modal {
+  animation: slideUpModal 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in-modal {
+  animation: scaleInModal 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-line-expand {
+  animation: lineExpand 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-pin-pulse {
+  animation: pinPulse 2.4s ease-in-out infinite;
+}
+
+/* Marquee pause-on-hover (container sets group) */
+.marquee-wrapper:hover .animate-marquee,
+.marquee-wrapper:focus-within .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Reduced motion — collapse all animation to instant */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -35,35 +35,41 @@ export default function HomePage() {
       {/* 4. Founder + social rail */}
       <FounderSection />
 
-      {/* 5a. Umrah packages */}
+      {/* 5a. Umrah packages — large editorial left card */}
       <FeaturedPackagesSection
         id="packages"
+        eyebrow="Sacred Journeys"
         title="Umrah & Hajj packages"
         subtitle="Planned with care for every step of your spiritual journey — from visa to the sacred return."
         packages={umrahPackages}
         viewAllHref="/umrah"
         viewAllLabel="See all Umrah packages"
         bgClass="bg-white"
+        layout="editorial-left"
       />
 
-      {/* 5b. International packages — different bg for rhythm */}
+      {/* 5b. International packages — horizontal rail for discovery feel */}
       <FeaturedPackagesSection
+        eyebrow="International Escapes"
         title="International tours"
         subtitle="Thailand, Malaysia, Dubai, Singapore, Sri Lanka — curated for Pakistani families and couples."
         packages={internationalPackages}
         viewAllHref="/packages"
         viewAllLabel="See all international tours"
         bgClass="bg-surface-warm"
+        layout="horizontal-rail"
       />
 
-      {/* 5c. Honeymoon packages */}
+      {/* 5c. Honeymoon packages — editorial right (mirrors Umrah for visual rhythm) */}
       <FeaturedPackagesSection
+        eyebrow="For Two"
         title="Honeymoon packages"
         subtitle="Begin your life together in a place worth remembering. Maldives, Bali, Turkey, and more."
         packages={honeymoonPackages}
         viewAllHref="/honeymoon"
         viewAllLabel="See all honeymoon packages"
         bgClass="bg-surface-grey"
+        layout="editorial-right"
       />
 
       {/* 6. How it works */}
