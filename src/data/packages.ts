@@ -273,9 +273,9 @@ export const internationalPackages: TravelPackage[] = [
     title: "Malaysia Immersion",
     destination: "Kuala Lumpur · Langkawi · Cameron Highlands",
     country: "Malaysia",
-    heroImage: "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?w=1600&q=85&fit=crop",
+    heroImage: "https://images.unsplash.com/photo-1508062878650-88b52897f298?w=1600&q=85&fit=crop",
     images: [
-      "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?w=1200&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1508062878650-88b52897f298?w=1200&q=80&fit=crop",
       "https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=1200&q=80&fit=crop",
       "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=1200&q=80&fit=crop",
     ],
@@ -327,7 +327,7 @@ export const internationalPackages: TravelPackage[] = [
         description:
           "Morning visit to Batu Caves (arrive before crowds). Afternoon: KLCC and Petronas Twin Towers Skybridge. Evening: Bukit Bintang shopping district.",
         meals: ["Breakfast"],
-        image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f11?w=800&q=80&fit=crop",
+        image: "https://images.unsplash.com/photo-1508062878650-88b52897f298?w=800&q=80&fit=crop",
       },
       {
         day: 3,
@@ -670,7 +670,7 @@ export const internationalPackages: TravelPackage[] = [
     heroImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1600&q=85&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&q=80&fit=crop",
-      "https://images.unsplash.com/photo-1552832718-5b8b7500d8de?w=1200&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?w=1200&q=80&fit=crop",
     ],
     duration: "6 Days / 5 Nights",
     startingPrice: 105000,
@@ -732,7 +732,7 @@ export const internationalPackages: TravelPackage[] = [
         title: "Kandy to Ella — Scenic Train",
         description: "Board the famous Kandy–Ella train through emerald tea country. Nine Arches Bridge walk in Ella. Afternoon at leisure.",
         meals: ["Breakfast"],
-        image: "https://images.unsplash.com/photo-1552832718-5b8b7500d8de?w=800&q=80&fit=crop",
+        image: "https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?w=800&q=80&fit=crop",
       },
       {
         day: 5,

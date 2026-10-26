@@ -1,7 +1,7 @@
 // WhatsApp deep-link generator — deterministic, no AI/backend required
 // All message templates are defined here, separate from UI components.
 
-export const WHATSAPP_NUMBER = "923001234567"; // TODO: Replace with real Shine Star WhatsApp number
+export const WHATSAPP_NUMBER = "923462646201";
 
 export interface PlannerAnswers {
   packageName?: string;

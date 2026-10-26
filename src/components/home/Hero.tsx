@@ -49,7 +49,7 @@ export function Hero() {
   const [plannerOpen, setPlannerOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-32 md:pt-32 md:pb-36">
       {/* Background — cinematic slow zoom */}
       <Image
         src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=85&fit=crop"
@@ -83,7 +83,7 @@ export function Hero() {
         {/* Gold eyebrow — first to appear */}
         <p
           className="text-eyebrow uppercase tracking-widest text-brand-gold mb-5 opacity-0"
-          style={{ animation: "fadeUpReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}
+          style={{ animation: "fadeUpReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0s both" }}
         >
           Premium Travel from Karachi
         </p>
@@ -92,7 +92,7 @@ export function Hero() {
         {/* NOTE: Figures below are sample data — replace before launch */}
         <div
           className="flex items-center justify-center gap-5 mb-8 text-white/75 text-body-sm opacity-0"
-          style={{ animation: "fadeUpReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s both" }}
+          style={{ animation: "fadeUpReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.08s both" }}
         >
           <span className="flex items-center gap-1.5">
             <span className="text-brand-gold text-base">★</span>
@@ -107,7 +107,7 @@ export function Hero() {
         {/* Headline — the hero moment */}
         <h1
           className="font-serif text-display-lg md:text-display-xl text-white opacity-0"
-          style={{ animation: "fadeUpReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0.45s both" }}
+          style={{ animation: "fadeUpReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both" }}
         >
           Umrah, International Tours
           <br className="hidden sm:block" />
@@ -117,7 +117,7 @@ export function Hero() {
         {/* Subheadline */}
         <p
           className="mt-6 text-body-lg md:text-xl text-white/75 max-w-xl mx-auto leading-relaxed opacity-0"
-          style={{ animation: "fadeUpReveal 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s both" }}
+          style={{ animation: "fadeUpReveal 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both" }}
         >
           Planned properly, priced clearly, supported on WhatsApp — from the day you ask to the day you return.
         </p>
@@ -125,7 +125,7 @@ export function Hero() {
         {/* CTAs */}
         <div
           className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3 opacity-0"
-          style={{ animation: "fadeUpReveal 0.7s cubic-bezier(0.16,1,0.3,1) 1.0s both" }}
+          style={{ animation: "fadeUpReveal 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both" }}
         >
           <button
             onClick={() => setPlannerOpen(true)}
@@ -145,7 +145,7 @@ export function Hero() {
       {/* Scroll cue */}
       <a
         href="#trust"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
+        className="hidden md:block absolute bottom-16 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/70 transition-colors animate-bounce focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
         aria-label="Scroll down"
       >
         <ChevronDown size={28} />

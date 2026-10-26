@@ -36,7 +36,7 @@ export default function HoneymoonPage() {
             Maldives overwater villas, Bali jungle retreats, Turkey&apos;s Cappadocia — planned with the care your first trip as a couple deserves.
           </p>
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923462646201"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-6 bg-brand-gold text-brand-ink text-label font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-champagne transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink min-h-[48px]"
@@ -125,7 +125,7 @@ export default function HoneymoonPage() {
               We plan custom honeymoons beyond our listed destinations. Tell us your dream trip.
             </p>
             <a
-              href="https://wa.me/923001234567"
+              href="https://wa.me/923462646201"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-brand-blue text-white text-label font-semibold px-6 py-3 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[44px]"

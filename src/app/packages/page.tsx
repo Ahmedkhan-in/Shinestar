@@ -41,7 +41,7 @@ export default function PackagesPage() {
               We arrange custom tours. Tell us where you want to go and we will plan it.
             </p>
             <a
-              href="https://wa.me/923001234567"
+              href="https://wa.me/923462646201"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-brand-blue text-white text-label font-semibold px-6 py-3 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[44px]"

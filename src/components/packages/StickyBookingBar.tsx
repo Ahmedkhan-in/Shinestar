@@ -51,7 +51,7 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
           Get my price
         </button>
         <a
-          href="https://wa.me/923001234567"
+          href="https://wa.me/923462646201"
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 w-10 h-10 flex items-center justify-center bg-surface-grey rounded-btn text-brand-muted hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
@@ -120,7 +120,7 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
         </button>
 
         <a
-          href="https://wa.me/923001234567"
+          href="https://wa.me/923462646201"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 border border-brand-blue/30 text-brand-blue text-label font-semibold py-2.5 rounded-btn hover:bg-brand-blue/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[44px]"

@@ -45,7 +45,7 @@ export function Footer() {
             </p>
             <p className="mt-2 text-body-md text-white/60">Ask us yours on WhatsApp.</p>
             <a
-              href="https://wa.me/923001234567"
+              href="https://wa.me/923462646201"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-5 bg-brand-gold text-brand-ink text-label font-semibold px-6 py-3 rounded-btn hover:bg-brand-champagne transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-footer"
@@ -149,12 +149,12 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/923001234567"
+                  href="https://wa.me/923462646201"
                   className="flex gap-2 text-body-sm text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
                 >
                   <Phone size={14} className="mt-0.5 shrink-0 text-brand-light" />
                   {/* TODO: Replace with real WhatsApp number */}
-                  +92 300 123 4567
+                  +92 346 2646201
                 </a>
               </li>
               <li className="flex gap-2 text-body-sm text-white/70">

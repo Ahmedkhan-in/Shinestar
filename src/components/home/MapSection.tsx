@@ -1,8 +1,9 @@
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
-// TODO: Replace with real Google Maps URL and embed for the actual office location
-const MAPS_URL = "https://maps.google.com/?q=Shahrah+e+Faisal+Karachi+Pakistan";
+const MAPS_URL = "https://maps.app.goo.gl/URjwPcr9nAv2NsMu8";
+// Pin coordinates from the Shine Star Travel & Tours Google Maps listing
+const MAPS_EMBED_SRC = "https://maps.google.com/maps?q=24.9026756,67.1144421&z=17&output=embed";
 
 export function MapSection() {
   return (
@@ -40,14 +41,13 @@ export function MapSection() {
                 </div>
                 <div>
                   <p className="text-body-md font-semibold text-brand-ink">WhatsApp & Phone</p>
-                  {/* TODO: Replace with real number */}
                   <a
-                    href="https://wa.me/923001234567"
+                    href="https://wa.me/923462646201"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-body-md text-brand-blue hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded mt-1 inline-block"
                   >
-                    +92 300 123 4567
+                    +92 346 2646201
                   </a>
                 </div>
               </li>
@@ -77,44 +77,28 @@ export function MapSection() {
             </a>
           </Reveal>
 
-          {/* Map — gold pin pulse placeholder */}
+          {/* Map — live Google Maps embed */}
           <Reveal delay={150} direction="left">
-            <div className="rounded-card overflow-hidden border border-surface-grey" style={{ aspectRatio: "4/3" }}>
+            <div
+              className="relative rounded-card overflow-hidden border border-surface-grey bg-surface-grey min-h-[300px]"
+              style={{ aspectRatio: "4/3" }}
+            >
+              <iframe
+                src={MAPS_EMBED_SRC}
+                className="absolute inset-0 w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Shine Star Travel & Tours office location"
+                allowFullScreen
+              />
               <a
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex w-full h-full min-h-[300px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-                aria-label="Open office location in Google Maps"
+                className="absolute bottom-4 left-4 inline-flex items-center gap-2 bg-white text-brand-ink text-body-sm font-semibold px-4 py-2.5 rounded-full shadow-modal hover:text-brand-blue transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
               >
-                {/* Warm grey map placeholder */}
-                <div className="absolute inset-0 bg-surface-grey flex flex-col items-center justify-center gap-4">
-                  {/* Pulsing gold pin */}
-                  <div className="relative flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-brand-gold/20 animate-pin-pulse absolute" />
-                    <div className="relative w-5 h-5 rounded-full bg-brand-gold flex items-center justify-center shadow-md z-10">
-                      <MapPin size={11} className="text-white fill-white" />
-                    </div>
-                  </div>
-
-                  <div className="text-center">
-                    <p className="text-body-md font-semibold text-brand-ink">Shine Star Travel & Tours</p>
-                    <p className="text-body-sm text-brand-muted mt-1">Karachi, Pakistan</p>
-                  </div>
-
-                  <span className="text-body-sm text-brand-blue font-semibold group-hover:underline transition-colors">
-                    Open in Google Maps →
-                  </span>
-                </div>
-                {/* TODO: Uncomment real Google Maps embed once iframe permission confirmed
-                <iframe
-                  src={MAPS_EMBED_SRC}
-                  className="w-full h-full"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Shine Star Travel office location"
-                />
-                */}
+                <MapPin size={14} className="text-brand-gold" />
+                Open in Google Maps
               </a>
             </div>
           </Reveal>

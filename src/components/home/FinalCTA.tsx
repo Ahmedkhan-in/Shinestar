@@ -45,7 +45,7 @@ export function FinalCTA() {
               Check my custom package price
             </button>
             <a
-              href="https://wa.me/923001234567"
+              href="https://wa.me/923462646201"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 border border-white/35 text-white text-label font-semibold px-7 py-4 rounded-btn hover:bg-white/10 transition-colors w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[52px]"

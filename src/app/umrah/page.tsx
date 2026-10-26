@@ -41,7 +41,7 @@ export default function UmrahPage() {
             Planned around your spiritual journey — hotels near both Masajid, full ziyarat, visa support, and a guide who has made this journey many times before.
           </p>
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923462646201"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-6 bg-brand-gold text-brand-ink text-label font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-champagne transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-footer min-h-[48px]"
@@ -70,8 +70,8 @@ export default function UmrahPage() {
             </div>
             <div className="relative aspect-[4/3] rounded-card overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1588680192168-f9caaa0e6da0?w=900&q=80&fit=crop"
-                alt="Masjid al-Nabawi, Madinah at night"
+                src="https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=900&q=80&fit=crop"
+                alt="The Kaaba and Masjid al-Haram, Makkah"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

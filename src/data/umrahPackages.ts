@@ -11,7 +11,7 @@ export const umrahPackages: TravelPackage[] = [
     heroImage: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1600&q=85&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1200&q=80&fit=crop",
-      "https://images.unsplash.com/photo-1588680192168-f9caaa0e6da0?w=1200&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=1200&q=80&fit=crop",
     ],
     duration: "7 Days / 6 Nights",
     startingPrice: 185000,
@@ -63,7 +63,7 @@ export const umrahPackages: TravelPackage[] = [
         description:
           "After Fajr: Riyad ul-Jannah if possible. Morning: Madinah ziyarat — Masjid Quba (oldest mosque in Islam), Masjid al-Qiblatayn, the date farms of Madinah, Uhud Martyrs' graves. Afternoon: Return to Masjid Nabawi for Asr and Maghrib. Evening: free for personal worship and dua.",
         meals: ["Breakfast", "Dinner"],
-        image: "https://images.unsplash.com/photo-1588680192168-f9caaa0e6da0?w=800&q=80&fit=crop",
+        image: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&q=80&fit=crop",
       },
       {
         day: 3,
@@ -243,7 +243,7 @@ export const umrahPackages: TravelPackage[] = [
     heroImage: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1600&q=85&fit=crop",
     images: [
       "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=1200&q=80&fit=crop",
-      "https://images.unsplash.com/photo-1588680192168-f9caaa0e6da0?w=1200&q=80&fit=crop",
+      "https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=1200&q=80&fit=crop",
     ],
     duration: "10 Days / 9 Nights",
     startingPrice: 235000,

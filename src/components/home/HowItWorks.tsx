@@ -69,7 +69,7 @@ export function HowItWorks() {
         <Reveal delay={450} className="mt-14">
           <div className="h-px w-16 bg-brand-gold mb-8 animate-line-expand" />
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923462646201"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-brand-blue text-white text-label font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[48px]"

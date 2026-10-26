@@ -60,7 +60,7 @@ export function FounderSection() {
               {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <a
-                  href="https://wa.me/923001234567"
+                  href="https://wa.me/923462646201"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-modal hover:scale-110 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"

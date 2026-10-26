@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
-import { TrustStrip } from "@/components/home/TrustStrip";
+import { HeroSearch, type SearchCatalogItem } from "@/components/home/HeroSearch";
 import { AirlineMarquee } from "@/components/home/AirlineMarquee";
 import { FounderSection } from "@/components/home/FounderSection";
 import { FeaturedPackagesSection } from "@/components/home/FeaturedPackages";
@@ -20,14 +20,33 @@ export const metadata: Metadata = {
     "Pakistan's trusted travel agency for Umrah, international tours, and honeymoon packages. Transparent pricing, WhatsApp support, experienced team since 2018.",
 };
 
+// Small index for the search bar — keeps full package data out of the client bundle
+const searchCatalog: SearchCatalogItem[] = [
+  ...umrahPackages.map((p) => ({ ...pick(p), href: `/umrah/${p.slug}` })),
+  ...internationalPackages.map((p) => ({ ...pick(p), href: `/packages/${p.slug}` })),
+  ...honeymoonPackages.map((p) => ({ ...pick(p), href: `/honeymoon/${p.slug}` })),
+];
+
+function pick(p: (typeof internationalPackages)[number]) {
+  return {
+    slug: p.slug,
+    title: p.title,
+    category: p.category,
+    country: p.country,
+    startingPrice: p.startingPrice,
+    currency: p.currency,
+    image: p.heroImage,
+  };
+}
+
 export default function HomePage() {
   return (
     <>
       {/* 1. Full-screen Orbit Hero */}
       <Hero />
 
-      {/* 2. Trust strip */}
-      <TrustStrip />
+      {/* 2. Search bar */}
+      <HeroSearch catalog={searchCatalog} />
 
       {/* 3. Airline marquee */}
       <AirlineMarquee />

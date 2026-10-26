@@ -1,7 +1,7 @@
 import type { CustomPlannerAnswers, TravelStandard } from "./types";
 import type { LandingContext } from "./types";
 
-export const WHATSAPP_NUMBER = "923001234567"; // TODO: replace before launch
+export const WHATSAPP_NUMBER = "923462646201";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

@@ -71,7 +71,7 @@ export function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923462646201"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -83,7 +83,7 @@ export function Navbar() {
             WhatsApp
           </a>
           <a
-            href="https://wa.me/923001234567"
+            href="https://wa.me/923462646201"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-blue text-white text-label font-semibold px-4 py-2 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
@@ -121,7 +121,7 @@ export function Navbar() {
               </Link>
             ))}
             <a
-              href="https://wa.me/923001234567"
+              href="https://wa.me/923462646201"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 bg-brand-blue text-white text-label font-semibold px-4 py-3 rounded-btn text-center hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
