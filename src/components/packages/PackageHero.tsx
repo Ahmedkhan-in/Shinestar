@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Clock, MapPin, ChevronDown } from "lucide-react";
-import { TripPlanner } from "@/components/planner/TripPlanner";
+import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import type { TravelPackage } from "@/types";
 
 interface PackageHeroProps {
@@ -91,7 +91,7 @@ export function PackageHero({ pkg }: PackageHeroProps) {
               onClick={() => setPlannerOpen(true)}
               className="bg-brand-blue text-white text-label font-semibold px-7 py-4 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[52px]"
             >
-              Check availability for my dates
+              Get my tailored package estimate
             </button>
             <a
               href="#itinerary"
@@ -113,9 +113,15 @@ export function PackageHero({ pkg }: PackageHeroProps) {
       </a>
 
       {plannerOpen && (
-        <TripPlanner
-          config={pkg.plannerConfig}
-          category={pkg.category}
+        <CustomPricePlanner
+          mode="landing"
+          context={{
+            packageName: pkg.title,
+            destination: pkg.destination,
+            category: pkg.category,
+            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
+          }}
+          sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
       )}

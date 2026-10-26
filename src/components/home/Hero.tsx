@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { TripPlanner } from "@/components/planner/TripPlanner";
+import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import { ChevronDown } from "lucide-react";
 
 const orbitImages = [
@@ -44,50 +44,6 @@ const orbitImages = [
   },
 ];
 
-const defaultPlannerConfig = {
-  packageName: "General Inquiry",
-  questions: [
-    {
-      id: "destination",
-      question: "What type of trip are you planning?",
-      type: "cards" as const,
-      options: [
-        { value: "Umrah", label: "Umrah / Hajj" },
-        { value: "International Tour", label: "International Tour" },
-        { value: "Honeymoon", label: "Honeymoon" },
-        { value: "Not sure yet", label: "Not sure yet" },
-      ],
-    },
-    {
-      id: "travelDates",
-      question: "When are you planning to travel?",
-      type: "chips" as const,
-      options: [
-        { value: "Within 1 month", label: "Within 1 month" },
-        { value: "1–3 months", label: "1–3 months" },
-        { value: "3–6 months", label: "3–6 months" },
-        { value: "Flexible", label: "I'm flexible" },
-      ],
-    },
-    {
-      id: "travelers",
-      question: "How many travelers?",
-      type: "chips" as const,
-      options: [
-        { value: "1 person", label: "Just me" },
-        { value: "2 people", label: "2 people" },
-        { value: "3–5 people", label: "3–5 people" },
-        { value: "6+ people", label: "6+ people" },
-      ],
-    },
-    {
-      id: "whatsappNumber",
-      question: "Your WhatsApp number?",
-      type: "input" as const,
-      placeholder: "e.g. 0300 1234567",
-    },
-  ],
-};
 
 export function Hero() {
   const [plannerOpen, setPlannerOpen] = useState(false);
@@ -175,7 +131,7 @@ export function Hero() {
             onClick={() => setPlannerOpen(true)}
             className="bg-brand-blue text-white text-label font-semibold px-7 py-4 rounded-btn hover:bg-brand-sky transition-colors w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[52px] shadow-modal"
           >
-            Check availability for my dates
+            Check my custom package price
           </button>
           <a
             href="#packages"
@@ -196,9 +152,8 @@ export function Hero() {
       </a>
 
       {plannerOpen && (
-        <TripPlanner
-          config={defaultPlannerConfig}
-          category="international"
+        <CustomPricePlanner
+          mode="home"
           onClose={() => setPlannerOpen(false)}
         />
       )}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
-import { TripPlanner } from "@/components/planner/TripPlanner";
+import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import type { TravelPackage } from "@/types";
 
 interface StickyBookingBarProps {
@@ -48,7 +48,7 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
           className="shrink-0 bg-brand-blue text-white text-label font-semibold px-4 py-2.5 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[44px]"
           tabIndex={visible ? 0 : -1}
         >
-          Check dates
+          Get my price
         </button>
         <a
           href="https://wa.me/923001234567"
@@ -63,9 +63,15 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
       </div>
 
       {plannerOpen && (
-        <TripPlanner
-          config={pkg.plannerConfig}
-          category={pkg.category}
+        <CustomPricePlanner
+          mode="landing"
+          context={{
+            packageName: pkg.title,
+            destination: pkg.destination,
+            category: pkg.category,
+            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
+          }}
+          sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
       )}
@@ -110,7 +116,7 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
           onClick={() => setPlannerOpen(true)}
           className="w-full bg-brand-blue text-white text-label font-semibold py-3.5 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[48px] mb-3"
         >
-          Check availability for my dates
+          Get my tailored package estimate
         </button>
 
         <a
@@ -129,9 +135,15 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
       </div>
 
       {plannerOpen && (
-        <TripPlanner
-          config={pkg.plannerConfig}
-          category={pkg.category}
+        <CustomPricePlanner
+          mode="landing"
+          context={{
+            packageName: pkg.title,
+            destination: pkg.destination,
+            category: pkg.category,
+            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
+          }}
+          sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
       )}
