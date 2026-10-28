@@ -23,6 +23,10 @@ interface PlannerWhatsappStepProps {
   /** Package / trip name shown on landing pages */
   packageName?: string;
   animationClass?: string;
+  /** Copy overrides for flows other than the price planner (e.g. visa enquiry) */
+  heading?: string;
+  hint?: string;
+  submitLabel?: string;
 }
 
 export function PlannerWhatsappStep({
@@ -32,6 +36,9 @@ export function PlannerWhatsappStep({
   onSubmit,
   packageName,
   animationClass,
+  heading,
+  hint,
+  submitLabel,
 }: PlannerWhatsappStepProps) {
   const [number, setNumber] = useState(initialNumber);
   const [countryCode, setCountryCode] = useState(initialCountryCode);
@@ -54,9 +61,10 @@ export function PlannerWhatsappStep({
     <div className={animationClass}>
       {/* Heading */}
       <h2 className="font-serif text-display-sm text-brand-ink leading-tight mb-2">
-        {isLanding
-          ? "Get your tailored package estimate"
-          : "Last step — where should we send your estimate?"}
+        {heading ??
+          (isLanding
+            ? "Get your tailored package estimate"
+            : "Last step — where should we send your estimate?")}
       </h2>
 
       {isLanding && (
@@ -126,7 +134,7 @@ export function PlannerWhatsappStep({
         >
           {invalid
             ? "Please enter a valid mobile number"
-            : "We'll send your estimated package details on WhatsApp. No spam."}
+            : hint ?? "We'll send your estimated package details on WhatsApp. No spam."}
         </p>
 
         {/* Submit */}
@@ -140,7 +148,7 @@ export function PlannerWhatsappStep({
               : "bg-surface-grey text-brand-muted cursor-not-allowed"
           )}
         >
-          {isLanding ? "Continue" : "Get my custom package price"}
+          {submitLabel ?? (isLanding ? "Continue" : "Get my custom package price")}
           <ChevronRight size={16} aria-hidden="true" />
         </button>
       </form>

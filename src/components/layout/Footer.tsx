@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./Logo";
 import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
 
 const footerLinks = {
@@ -22,6 +23,11 @@ const footerLinks = {
     { href: "/honeymoon/maldives-7-days", label: "Maldives" },
     { href: "/honeymoon/bali-honeymoon-6-days", label: "Bali" },
     { href: "/honeymoon/turkey-honeymoon-8-days", label: "Turkey" },
+  ],
+  company: [
+    { href: "/visa", label: "Visa Assistance" },
+    { href: "/reviews", label: "Reviews & Gallery" },
+    { href: "/about", label: "About Us" },
   ],
 };
 
@@ -58,18 +64,18 @@ export function Footer() {
 
       {/* Links grid */}
       <div className="max-w-content mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Brand column */}
-          <div className="col-span-2 md:col-span-1">
-            <p className="font-serif text-xl font-light text-white">
-              Shine Star <span className="font-sans font-semibold text-brand-light">Travel</span>
+          <div className="col-span-2 md:col-span-3 lg:col-span-1">
+            <p>
+              <Logo tone="light" size="lg" />
             </p>
             <p className="mt-3 text-body-sm text-white/60 leading-relaxed">
               Licensed travel agency based in Karachi. Specialists in Umrah, international tours, and honeymoon packages since 2018.
             </p>
             <div className="mt-4 flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/shine_star_travel_and_tours/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -136,6 +142,23 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Company */}
+          <div>
+            <p className="text-label text-white/40 mb-4">Company</p>
+            <ul className="space-y-2">
+              {footerLinks.company.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-body-sm text-white/70 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <p className="text-label text-white/40 mb-4">Contact</p>
@@ -168,7 +191,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-body-sm text-white/40">
-            © {new Date().getFullYear()} Shine Star Travel & Tours. All rights reserved.
+            © {new Date().getFullYear()} Shine Star Tours and Travel. All rights reserved.
           </p>
           <p className="text-body-sm text-white/40">
             Licensed travel agency · Karachi, Pakistan

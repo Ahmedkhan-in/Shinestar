@@ -2,22 +2,22 @@ import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const MAPS_URL = "https://maps.app.goo.gl/URjwPcr9nAv2NsMu8";
-// Pin coordinates from the Shine Star Travel & Tours Google Maps listing
+// Pin coordinates from the Shine Star Tours and Travel Google Maps listing
 const MAPS_EMBED_SRC = "https://maps.google.com/maps?q=24.9026756,67.1144421&z=17&output=embed";
 
-export function MapSection() {
+export function MapSection({ heading = "Find us in Karachi", extra }: { heading?: string; extra?: React.ReactNode } = {}) {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-content mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 md:gap-16 items-start">
 
           {/* Contact info */}
           <Reveal>
-            <p className="text-eyebrow uppercase tracking-widest text-brand-gold mb-3">
+            <p className="text-eyebrow uppercase tracking-widest text-brand-gold-deep mb-3">
               Visit us
             </p>
             <h2 className="font-serif text-display-md text-brand-ink mb-8">
-              Find us in Karachi
+              {heading}
             </h2>
 
             <ul className="space-y-6">
@@ -75,6 +75,7 @@ export function MapSection() {
               <Navigation size={14} />
               Get directions
             </a>
+            {extra}
           </Reveal>
 
           {/* Map — live Google Maps embed */}
@@ -88,7 +89,7 @@ export function MapSection() {
                 className="absolute inset-0 w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Shine Star Travel & Tours office location"
+                title="Shine Star Tours and Travel office location"
                 allowFullScreen
               />
               <a

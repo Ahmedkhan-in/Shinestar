@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 interface PlannerShellProps {
@@ -21,6 +22,10 @@ export function PlannerShell({
 }: PlannerShellProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  // Rendered into <body> via a portal: a transformed ancestor (scroll reveals,
+  // entrance animations) would otherwise trap `position: fixed` and squeeze the sheet.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   // Lock body scroll
   useEffect(() => {
@@ -31,10 +36,31 @@ export function PlannerShell({
     };
   }, []);
 
-  // Focus close button on mount
+  // Focus close button once the portal has mounted; return focus to the opener on close
   useEffect(() => {
+    if (!mounted) return;
+    const opener = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
-  }, []);
+    return () => opener?.focus?.();
+  }, [mounted]);
+
+  // Keep Tab inside the sheet
+  useEffect(() => {
+    if (!mounted) return;
+    function onTab(e: KeyboardEvent) {
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+    window.addEventListener("keydown", onTab);
+    return () => window.removeEventListener("keydown", onTab);
+  }, [mounted]);
 
   // Escape to close
   useEffect(() => {
@@ -45,9 +71,11 @@ export function PlannerShell({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-end md:items-center justify-center"
+      className="fixed inset-0 z-[60] flex items-end md:items-center justify-center"
       role="dialog"
       aria-modal="true"
       aria-label={title}
@@ -94,6 +122,7 @@ export function PlannerShell({
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

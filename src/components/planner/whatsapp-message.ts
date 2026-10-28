@@ -46,7 +46,7 @@ export function buildHomeMessage(answers: CustomPlannerAnswers): string {
     .join("\n");
 
   return [
-    "Assalam o Alaikum Shine Star Travel & Tours,",
+    "Assalam o Alaikum Shine Star Tours and Travel,",
     "",
     "I would like a custom package price.",
     "",
@@ -80,7 +80,7 @@ export function buildLandingMessage(
     .join("\n");
 
   return [
-    "Assalam o Alaikum Shine Star Travel & Tours,",
+    "Assalam o Alaikum Shine Star Tours and Travel,",
     "",
     `I'm interested in: ${context.packageName}`,
     "",

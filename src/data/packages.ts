@@ -256,7 +256,7 @@ export const internationalPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Thailand 7 Days Package from Karachi | Bangkok Pattaya Phuket | Shine Star Travel",
+      title: "Thailand 7 Days Package from Karachi | Bangkok Pattaya Phuket | Shine Star Tours and Travel",
       description:
         "7-day Thailand tour package from Karachi covering Bangkok, Pattaya, and Phuket. Includes halal dining guidance, airport transfers, and 4-star hotels. Plan yours on WhatsApp.",
       keywords: ["Thailand tour package Karachi", "Bangkok Pattaya Phuket tour", "halal Thailand trip"],
@@ -481,7 +481,7 @@ export const internationalPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Malaysia 8 Days Tour from Karachi | Halal-Friendly | Shine Star Travel",
+      title: "Malaysia 8 Days Tour from Karachi | Halal-Friendly | Shine Star Tours and Travel",
       description:
         "8-day Malaysia tour covering Kuala Lumpur, Cameron Highlands, and Langkawi. Halal-certified hotels, family-friendly, transparent pricing. Plan on WhatsApp.",
     },
@@ -653,7 +653,7 @@ export const internationalPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Singapore 5 Days Tour Package from Karachi | Shine Star Travel",
+      title: "Singapore 5 Days Tour Package from Karachi | Shine Star Tours and Travel",
       description: "5-day Singapore package from Karachi. Gardens by the Bay, Marina Bay Sands, Sentosa. Visa assistance included.",
     },
     featured: false,
@@ -826,7 +826,7 @@ export const internationalPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Sri Lanka 6 Days Tour from Karachi | Sigiriya Kandy Galle | Shine Star Travel",
+      title: "Sri Lanka 6 Days Tour from Karachi | Sigiriya Kandy Galle | Shine Star Tours and Travel",
       description: "6-day Sri Lanka tour package from Karachi. Sigiriya, Kandy, Galle, scenic Ella train. Private vehicle throughout.",
     },
     featured: false,
@@ -998,7 +998,7 @@ export const internationalPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Dubai 5 Days Package from Karachi | Family & Couples | Shine Star Travel",
+      title: "Dubai 5 Days Package from Karachi | Family & Couples | Shine Star Tours and Travel",
       description: "5-day Dubai tour from Karachi. Burj Khalifa, desert safari, dhow cruise. Visa assistance included. Halal-friendly.",
     },
     featured: true,

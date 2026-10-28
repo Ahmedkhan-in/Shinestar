@@ -80,7 +80,7 @@ export const honeymoonPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Maldives Honeymoon Package from Karachi | Overwater Villa | Shine Star Travel",
+      title: "Maldives Honeymoon Package from Karachi | Overwater Villa | Shine Star Tours and Travel",
       description: "7-day Maldives honeymoon from Karachi. Overwater villa, private beach dinner, dolphin cruise. Halal-friendly. Plan your honeymoon on WhatsApp.",
     },
     featured: true,
@@ -162,7 +162,7 @@ export const honeymoonPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Bali Honeymoon Package from Karachi | Ubud & Seminyak | Shine Star Travel",
+      title: "Bali Honeymoon Package from Karachi | Ubud & Seminyak | Shine Star Tours and Travel",
       description: "6-day Bali honeymoon from Karachi. Ubud jungle villa, Seminyak beach, Uluwatu sunset. Private car throughout. Halal-friendly options.",
     },
     featured: true,
@@ -249,7 +249,7 @@ export const honeymoonPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Turkey Honeymoon Package from Karachi | Istanbul Cappadocia | Shine Star Travel",
+      title: "Turkey Honeymoon Package from Karachi | Istanbul Cappadocia | Shine Star Tours and Travel",
       description: "8-day Turkey honeymoon from Karachi. Istanbul, Cappadocia balloon, Pamukkale. Halal-friendly. Plan on WhatsApp.",
     },
     featured: true,

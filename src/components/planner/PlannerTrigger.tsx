@@ -1,9 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { TripPlanner } from "./TripPlanner";
 import type { PlannerConfig } from "@/types";
 import { cn } from "@/lib/utils";
+
+// Modals load on demand — their code isn't downloaded until opened
+const TripPlanner = dynamic(() => import("./TripPlanner").then((m) => m.TripPlanner), { ssr: false });
 
 interface PlannerTriggerProps {
   config: PlannerConfig;

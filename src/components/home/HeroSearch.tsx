@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,11 +20,13 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import { getStepFlow } from "@/components/planner/planner-config";
 import type { CustomPlannerAnswers } from "@/components/planner/types";
 import type { PackageCategory } from "@/types";
 import { cn, formatPrice } from "@/lib/utils";
+
+// Modals load on demand — their code isn't downloaded until opened
+const CustomPricePlanner = dynamic(() => import("@/components/planner/custom-price-planner").then((m) => m.CustomPricePlanner), { ssr: false });
 
 const SESSION_KEY = "shine-star-planner-home";
 

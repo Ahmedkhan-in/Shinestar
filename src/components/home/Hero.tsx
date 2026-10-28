@@ -1,9 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
-import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import { ChevronDown } from "lucide-react";
+
+// Modals load on demand — their code isn't downloaded until opened
+const CustomPricePlanner = dynamic(() => import("@/components/planner/custom-price-planner").then((m) => m.CustomPricePlanner), { ssr: false });
 
 const orbitImages = [
   {
@@ -53,7 +56,7 @@ export function Hero() {
       {/* Background — cinematic slow zoom */}
       <Image
         src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=85&fit=crop"
-        alt="Aircraft above clouds at golden hour — Shine Star Travel & Tours"
+        alt="Aircraft above clouds at golden hour — Shine Star Tours and Travel"
         fill
         priority
         className="object-cover object-center animate-hero-zoom"
@@ -105,9 +108,11 @@ export function Hero() {
         </div>
 
         {/* Headline — the hero moment */}
+        {/* Headline + subheadline rise in but are never transparent: they are the page's
+            main content, so they must paint immediately (fast LCP) */}
         <h1
-          className="font-serif text-display-lg md:text-display-xl text-white opacity-0"
-          style={{ animation: "fadeUpReveal 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both" }}
+          className="font-serif text-display-lg md:text-display-xl text-white"
+          style={{ animation: "riseIn 0.9s cubic-bezier(0.16,1,0.3,1) both" }}
         >
           Umrah, International Tours
           <br className="hidden sm:block" />
@@ -116,8 +121,8 @@ export function Hero() {
 
         {/* Subheadline */}
         <p
-          className="mt-6 text-body-lg md:text-xl text-white/75 max-w-xl mx-auto leading-relaxed opacity-0"
-          style={{ animation: "fadeUpReveal 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s both" }}
+          className="mt-6 text-body-lg md:text-xl text-white/75 max-w-xl mx-auto leading-relaxed"
+          style={{ animation: "riseIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}
         >
           Planned properly, priced clearly, supported on WhatsApp — from the day you ask to the day you return.
         </p>

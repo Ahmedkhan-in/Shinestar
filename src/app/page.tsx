@@ -15,7 +15,7 @@ import { honeymoonPackages } from "@/data/honeymoonPackages";
 import { testimonials } from "@/data/testimonials";
 
 export const metadata: Metadata = {
-  title: "Shine Star Travel & Tours — Premium Travel from Karachi",
+  title: "Shine Star Tours and Travel — Premium Travel from Karachi",
   description:
     "Pakistan's trusted travel agency for Umrah, international tours, and honeymoon packages. Transparent pricing, WhatsApp support, experienced team since 2018.",
 };

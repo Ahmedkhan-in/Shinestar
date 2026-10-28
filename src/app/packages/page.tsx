@@ -3,7 +3,7 @@ import { PackageCard } from "@/components/packages/PackageCard";
 import { internationalPackages } from "@/data/packages";
 
 export const metadata: Metadata = {
-  title: "International Tour Packages from Karachi | Shine Star Travel",
+  title: "International Tour Packages from Karachi | Shine Star Tours and Travel",
   description:
     "Thailand, Malaysia, Singapore, Dubai, Sri Lanka — curated international tour packages from Karachi. Transparent pricing, halal-friendly, WhatsApp support.",
 };

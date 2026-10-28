@@ -28,7 +28,7 @@ export function CustomPricePlanner({
   const planner = useTripPlanner({ mode, context, sessionKey });
 
   const shellEyebrow =
-    mode === "landing" && context ? context.packageName : "Shine Star Travel";
+    mode === "landing" && context ? context.packageName : "Shine Star Tours and Travel";
 
   const shellTitle =
     planner.phase === "summary"

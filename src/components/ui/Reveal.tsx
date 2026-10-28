@@ -1,38 +1,27 @@
-"use client";
-
-import { useInView } from "@/hooks/useInView";
 import { cn } from "@/lib/utils";
 
 interface RevealProps {
   children: React.ReactNode;
   className?: string;
+  /** Extra delay (ms) before this block animates in — use for staggered lists */
   delay?: number;
   direction?: "up" | "left" | "right" | "fade";
+  /** Render as a list item when revealing children of a <ul>/<ol> */
+  as?: "div" | "li";
 }
 
-export function Reveal({ children, className, delay = 0, direction = "up" }: RevealProps) {
-  const [ref, isInView] = useInView();
-
-  const hiddenClass =
-    direction === "up"    ? "opacity-0 translate-y-4" :
-    direction === "left"  ? "opacity-0 translate-x-4" :
-    direction === "right" ? "opacity-0 -translate-x-4" :
-                            "opacity-0";
+// Scroll reveal. Rendered visible on the server; <RevealObserver /> (in the root layout)
+// hides only blocks still below the viewport once JS runs, then fades them in on scroll.
+// So nothing on screen ever waits for JavaScript to appear.
+export function Reveal({ children, className, delay = 0, direction = "up", as = "div" }: RevealProps) {
+  const Tag = as;
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-[opacity,transform] duration-700",
-        isInView ? "opacity-100 translate-y-0 translate-x-0" : hiddenClass,
-        className
-      )}
-      style={{
-        transitionDelay: delay > 0 ? `${delay}ms` : undefined,
-        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-      }}
+    <Tag
+      className={cn("reveal", `reveal-${direction}`, className)}
+      style={delay > 0 ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

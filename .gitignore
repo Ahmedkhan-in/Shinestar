@@ -25,3 +25,6 @@ Thumbs.db
 # Misc
 *.pem
 .vercel
+
+# Design inspector output (local only)
+.taste-skill/

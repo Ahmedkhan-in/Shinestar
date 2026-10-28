@@ -1,5 +1,8 @@
 import Image from "next/image";
+import { Play } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
+import { reels } from "@/data/reels";
+import { company } from "@/data/site";
 
 // NOTE: Metrics below are sample data — replace with real figures before launch
 const metrics = [
@@ -8,36 +11,9 @@ const metrics = [
   { value: "25+",    label: "Destinations",     isSample: false },
 ];
 
-const socialPosts = [
-  {
-    src: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=80&fit=crop",
-    alt: "Umrah group at Masjid al-Haram",
-    caption: "Umrah 2024 — alhamdulillah",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80&fit=crop",
-    alt: "Maldives honeymoon couple",
-    caption: "Maldives honeymoon",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&q=80&fit=crop",
-    alt: "Thailand tour group at temple",
-    caption: "Thailand — Bangkok crew",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=80&fit=crop",
-    alt: "Dubai family at Burj Khalifa",
-    caption: "Dubai family trip",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=400&q=80&fit=crop",
-    alt: "Turkey honeymoon balloon",
-    caption: "Cappadocia sunrise",
-  },
-];
-
-// Duplicate for seamless infinite scroll
-const doubled = [...socialPosts, ...socialPosts];
+// Real reels from Instagram — each card opens its own reel
+// Duplicated once for a seamless infinite scroll
+const doubled = [...reels, ...reels];
 
 export function FounderSection() {
   return (
@@ -52,7 +28,7 @@ export function FounderSection() {
             <div className="relative aspect-video bg-brand-footer rounded-card overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80&fit=crop"
-                alt="Founder introduction — Shine Star Travel"
+                alt="Founder introduction — Shine Star Tours and Travel"
                 fill
                 className="object-cover opacity-55"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -123,39 +99,55 @@ export function FounderSection() {
 
         {/* Social media rail — infinite marquee */}
         <Reveal delay={200} className="mt-14 md:mt-20">
-          <p className="text-eyebrow uppercase tracking-widest text-brand-muted/60 text-center mb-5">
-            Follow us on Instagram
+          <p className="text-eyebrow uppercase tracking-widest text-brand-muted text-center mb-5">
+            <a
+              href={company.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+            >
+              Follow us on Instagram
+            </a>
           </p>
           <div className="marquee-wrapper relative overflow-hidden -mx-4 md:mx-0">
             {/* Fade edges */}
             <div className="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-surface-warm to-transparent z-10 pointer-events-none" aria-hidden="true" />
             <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-surface-warm to-transparent z-10 pointer-events-none" aria-hidden="true" />
 
-            <div className="flex gap-4 animate-marquee" style={{ animationDuration: "22s" }}>
-              {doubled.map((post, i) => (
-                <a
-                  key={`${post.caption}-${i}`}
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative w-48 h-48 shrink-0 rounded-card overflow-hidden group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-                  aria-hidden={i >= socialPosts.length}
-                >
-                  <Image
-                    src={post.src}
-                    alt={post.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-                    sizes="192px"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
-                  <div
-                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+            <div className="flex w-max gap-4 animate-marquee" style={{ animationDuration: "60s" }}>
+              {doubled.map((reel, i) => {
+                const isCopy = i >= reels.length;
+                return (
+                  <a
+                    key={`${reel.id}-${i}`}
+                    href={reel.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-hidden={isCopy || undefined}
+                    tabIndex={isCopy ? -1 : undefined}
+                    aria-label={isCopy ? undefined : `Watch on Instagram: ${reel.title} (opens in a new tab)`}
+                    className="relative w-40 md:w-44 aspect-[9/16] shrink-0 rounded-card overflow-hidden bg-brand-footer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
                   >
-                    <p className="text-white text-body-sm font-medium">{post.caption}</p>
-                  </div>
-                </a>
-              ))}
+                    <Image
+                      src={reel.poster}
+                      alt={reel.posterAlt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                      sizes="176px"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300" aria-hidden="true" />
+                    <span
+                      className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 text-brand-ink flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      aria-hidden="true"
+                    >
+                      <Play size={13} className="ml-0.5 fill-brand-ink" />
+                    </span>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent p-3 pt-8">
+                      <p className="text-white text-body-sm font-medium leading-snug">{reel.title}</p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </Reveal>

@@ -98,10 +98,155 @@ export interface Testimonial {
   rating: number;
   quote: string;
   date: string;
-  isSampleData: true;
+  isSampleData?: boolean;
 }
 
 export interface Airline {
   name: string;
   logo: string;
+}
+
+// ─── Visa assistance ──────────────────────────────────────────────────────────
+// Shapes are CMS-ready: plain strings and arrays, no JSX in data.
+
+export type VisaTypeId =
+  | "umrah"
+  | "tourist"
+  | "family-visit"
+  | "business"
+  | "transit";
+
+export interface VisaService {
+  id: VisaTypeId;
+  name: string;
+  /** Who this service is for, written for a Pakistani passport holder */
+  forWho: string;
+  included: string[];
+  /** Always phrased as an estimate, never a promise */
+  processingGuide: string;
+  ctaLabel: string;
+}
+
+export interface VisaDestination {
+  slug: string;
+  country: string;
+  /** Short line for the selector, e.g. "Umrah e-visa" */
+  summary: string;
+  image?: string;
+  imageAlt?: string;
+  entryType: string;
+  validity: string;
+  documents: string[];
+  biometrics: string;
+  financialNotes: string;
+  processingEstimate: string;
+  /** Things Pakistani applicants commonly get wrong */
+  watchOut?: string;
+  relatedHref?: string;
+  relatedLabel?: string;
+}
+
+export interface ChecklistItem {
+  id: string;
+  title: string;
+  detail: string;
+  /** Visa types that need this document */
+  appliesTo: VisaTypeId[];
+}
+
+export interface ProcessStep {
+  title: string;
+  youDo: string;
+  weDo: string;
+}
+
+export interface VisaFAQ extends FAQ {
+  id: string;
+}
+
+// ─── Reviews & gallery ────────────────────────────────────────────────────────
+
+export type TripType = "umrah" | "international" | "honeymoon" | "family" | "group" | "visa";
+
+export interface TravelerReview {
+  id: string;
+  name: string;
+  city: string;
+  photo?: string;
+  tripType: TripType;
+  trip: string;
+  destination: string;
+  /** ISO month, e.g. "2025-02" — used for sorting */
+  travelMonth: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  quote: string;
+  /** Set true only when the booking has been matched to our records */
+  verified: boolean;
+  featured?: boolean;
+  relatedHref?: string;
+  isSampleData: boolean;
+}
+
+export type GalleryCategory = "umrah" | "beaches" | "mountains" | "cities" | "honeymoons" | "families";
+
+export interface GalleryItem {
+  id: string;
+  src: string;
+  alt: string;
+  caption: string;
+  category: GalleryCategory;
+  /** width / height of the source crop, used to reserve space and avoid layout shift */
+  ratio: number;
+  relatedHref?: string;
+  relatedLabel?: string;
+  /** Traveler credit — only for photos travelers have shared with permission */
+  sharedBy?: string;
+}
+
+export interface SocialPost {
+  id: string;
+  platform: "instagram" | "facebook";
+  href: string;
+  poster: string;
+  posterAlt: string;
+  title: string;
+  kind: "reel" | "post";
+  isSampleData: boolean;
+}
+
+// ─── About ────────────────────────────────────────────────────────────────────
+
+export interface TeamMember {
+  id: string;
+  /** Leave undefined until the person agrees to be named publicly */
+  name?: string;
+  role: string;
+  specialization: string;
+  languages: string[];
+  experience: string;
+  photo?: string;
+  isSampleData: boolean;
+}
+
+export interface Milestone {
+  year: string;
+  title: string;
+  detail: string;
+  isSampleData: boolean;
+}
+
+export interface CompanyValue {
+  title: string;
+  detail: string;
+}
+
+export interface Credential {
+  id: string;
+  name: string;
+  issuer: string;
+  /** What it means for the traveler */
+  meaning: string;
+  /** Registration number once confirmed — undefined renders as "pending publication" */
+  reference?: string;
+  verifyHint: string;
 }

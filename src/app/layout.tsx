@@ -3,6 +3,7 @@ import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { RevealObserver } from "@/components/ui/RevealObserver";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,14 +14,15 @@ const inter = Inter({
 
 const fraunces = Fraunces({
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  // Upright only: italic serif is used in one place, and its file (80 KB) was preloaded on every page
+  style: ["normal"],
   axes: ["opsz"],
   variable: "--font-fraunces",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Shine Star Travel & Tours — Umrah, International & Honeymoon Packages from Karachi",
+  title: "Shine Star Tours and Travel — Umrah, International & Honeymoon Packages from Karachi",
   description:
     "Premium travel agency based in Karachi. Specialists in Umrah packages, international tours (Thailand, Malaysia, Dubai, Singapore, Sri Lanka), and honeymoon packages. Clear pricing, WhatsApp support.",
   keywords: [
@@ -30,12 +32,12 @@ export const metadata: Metadata = {
     "honeymoon packages",
     "Thailand tour Karachi",
     "Dubai package Pakistan",
-    "Shine Star Travel",
+    "Shine Star Tours and Travel",
   ],
   openGraph: {
     type: "website",
     locale: "en_PK",
-    siteName: "Shine Star Travel & Tours",
+    siteName: "Shine Star Tours and Travel",
   },
 };
 
@@ -50,6 +52,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

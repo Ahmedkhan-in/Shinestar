@@ -14,6 +14,8 @@ const config: Config = {
           sky: "#0879D9",
           light: "#36A9ED",
           gold: "#DDA52D",
+          // AA-safe gold for text on white / cream / grey surfaces (4.7:1+)
+          "gold-deep": "#8A6416",
           champagne: "#F3C969",
           ink: "#172B45",
           muted: "#5A7494",

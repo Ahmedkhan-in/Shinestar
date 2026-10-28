@@ -8,13 +8,23 @@ import type { Testimonial } from "@/types";
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
+  eyebrow?: string;
+  title?: string;
+  bgClass?: string;
+  id?: string;
 }
 
 // How many cards peek out behind the active one
 const STACK_DEPTH = 2;
 const SWIPE_THRESHOLD = 50;
 
-export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) {
+export function TestimonialCarousel({
+  testimonials,
+  eyebrow = "Traveler stories",
+  title = "What our travelers say",
+  bgClass = "bg-surface-grey",
+  id,
+}: TestimonialCarouselProps) {
   const count = testimonials.length;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -55,15 +65,15 @@ export function TestimonialCarousel({ testimonials }: TestimonialCarouselProps) 
   };
 
   return (
-    <section className="bg-surface-grey py-16 md:py-24 overflow-hidden">
+    <section id={id} className={cn(bgClass, "py-16 md:py-24 overflow-hidden")}>
       <div className="max-w-content mx-auto px-4 md:px-8">
 
         <div className="text-center mb-12">
-          <p className="text-eyebrow uppercase tracking-widest text-brand-gold mb-3">
-            Traveler stories
+          <p className="text-eyebrow uppercase tracking-widest text-brand-gold-deep mb-3">
+            {eyebrow}
           </p>
           <h2 className="font-serif text-display-md text-brand-ink">
-            What our travelers say
+            {title}
           </h2>
         </div>
         {/* NOTE: All testimonials are sample data until replaced with real reviews */}

@@ -223,7 +223,7 @@ export const umrahPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Umrah 7 Days Package from Karachi | Near Haram | Shine Star Travel",
+      title: "Umrah 7 Days Package from Karachi | Near Haram | Shine Star Tours and Travel",
       description:
         "7-day Umrah package from Karachi. Hotels near Masjid al-Haram and Masjid Nabawi. Full ziyarat, visa processing, dedicated guide. Plan on WhatsApp.",
       keywords: ["Umrah package Karachi", "7 days Umrah", "Umrah near Haram hotel"],
@@ -313,7 +313,7 @@ export const umrahPackages: TravelPackage[] = [
       ],
     },
     seo: {
-      title: "Umrah 10 Days Package from Karachi | Shine Star Travel",
+      title: "Umrah 10 Days Package from Karachi | Shine Star Tours and Travel",
       description: "10-day Umrah from Karachi. 5 nights Makkah near Haram, 4 nights Madinah near Nabawi. Full ziyarat, visa, dedicated guide.",
     },
     featured: true,

@@ -77,6 +77,12 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Motion without fading — for above-the-fold headlines that must paint immediately */
+@keyframes riseIn {
+  from { transform: translateY(20px); }
+  to   { transform: translateY(0); }
+}
+
 @keyframes lineExpand {
   from { transform: scaleX(0); transform-origin: left center; }
   to   { transform: scaleX(1); transform-origin: left center; }
@@ -131,6 +137,23 @@
 .animate-pin-pulse {
   animation: pinPulse 2.4s ease-in-out infinite;
 }
+
+/* ─── Scroll reveal (<Reveal> + <RevealObserver>) ───────────────────────────────
+   Visible by default. RevealObserver adds .reveal-pending only to blocks below the
+   fold (no transition, so they vanish instantly while off-screen), then removes it
+   when they scroll into view — which plays the 700ms fade-up below. */
+
+.reveal {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-pending {
+  opacity: 0;
+  transition: none;
+}
+.reveal-up.reveal-pending    { transform: translateY(24px); }
+.reveal-left.reveal-pending  { transform: translateX(24px); }
+.reveal-right.reveal-pending { transform: translateX(-24px); }
 
 /* Marquee pause-on-hover (container sets group) */
 .marquee-wrapper:hover .animate-marquee,

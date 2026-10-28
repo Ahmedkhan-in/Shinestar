@@ -5,7 +5,7 @@ import { Clock, Heart } from "lucide-react";
 import { honeymoonPackages } from "@/data/honeymoonPackages";
 
 export const metadata: Metadata = {
-  title: "Honeymoon Packages from Karachi | Maldives, Bali, Turkey | Shine Star Travel",
+  title: "Honeymoon Packages from Karachi | Maldives, Bali, Turkey | Shine Star Tours and Travel",
   description:
     "Romantic honeymoon packages from Karachi — Maldives overwater villas, Bali jungle retreats, Turkey's Cappadocia. Transparent pricing, personalised arrangements.",
 };

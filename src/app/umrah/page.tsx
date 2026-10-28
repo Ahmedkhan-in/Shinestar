@@ -5,7 +5,7 @@ import { Clock, Check } from "lucide-react";
 import { umrahPackages } from "@/data/umrahPackages";
 
 export const metadata: Metadata = {
-  title: "Umrah Packages from Karachi 2025 | 7, 10 & 14 Days | Shine Star Travel",
+  title: "Umrah Packages from Karachi 2025 | 7, 10 & 14 Days | Shine Star Tours and Travel",
   description:
     "Umrah packages from Karachi — 7, 10, and 14-day options. Hotels near Masjid al-Haram and Masjid Nabawi. Full ziyarat, visa assistance, dedicated guide.",
 };

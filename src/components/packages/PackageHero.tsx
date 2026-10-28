@@ -1,10 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 import { Clock, MapPin, ChevronDown } from "lucide-react";
-import { CustomPricePlanner } from "@/components/planner/custom-price-planner";
 import type { TravelPackage } from "@/types";
+
+// Modals load on demand — their code isn't downloaded until opened
+const CustomPricePlanner = dynamic(() => import("@/components/planner/custom-price-planner").then((m) => m.CustomPricePlanner), { ssr: false });
 
 interface PackageHeroProps {
   pkg: TravelPackage;

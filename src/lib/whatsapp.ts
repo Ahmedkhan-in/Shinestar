@@ -24,7 +24,7 @@ function line(label: string, value?: string): string {
 
 export function buildInternationalMessage(answers: PlannerAnswers): string {
   const lines = [
-    `Hi Shine Star Travel! I'd like to inquire about a package.`,
+    `Hi Shine Star Tours and Travel! I'd like to inquire about a package.`,
     ``,
     `*Package Interest:* ${answers.packageName ?? answers.destination ?? "International Tour"}`,
     ``,
@@ -65,7 +65,7 @@ export function buildUmrahMessage(answers: PlannerAnswers): string {
 
 export function buildHoneymoonMessage(answers: PlannerAnswers): string {
   const lines = [
-    `Hi Shine Star Travel! We're planning our honeymoon and would love your help.`,
+    `Hi Shine Star Tours and Travel! We're planning our honeymoon and would love your help.`,
     ``,
     `*Destination Interest:* ${answers.destination ?? answers.packageName ?? "Honeymoon Package"}`,
     ``,
@@ -80,6 +80,62 @@ export function buildHoneymoonMessage(answers: PlannerAnswers): string {
     .join("\n");
 
   return lines;
+}
+
+export interface VisaEnquiryAnswers {
+  visaType?: string;
+  destination?: string;
+  applicants?: string;
+  travelHistory?: string;
+  travelMonth?: string;
+  city?: string;
+  whatsapp?: string;
+}
+
+export function buildVisaMessage(a: VisaEnquiryAnswers): string {
+  return [
+    `Assalamu Alaikum, Shine Star. I'd like to check my visa requirements.`,
+    ``,
+    line("Visa type", a.visaType),
+    line("Country", a.destination),
+    line("Applicants", a.applicants),
+    line("Previous travel", a.travelHistory),
+    line("Planned travel month", a.travelMonth),
+    line("I live in", a.city),
+    line("My WhatsApp", a.whatsapp),
+    ``,
+    `I hold a Pakistani passport. Please tell me which documents I need and your service fee.`,
+  ]
+    .filter((l, i, arr) => l !== "" || (arr[i - 1] ?? "") !== "")
+    .join("\n");
+}
+
+export interface ReviewSubmission {
+  name: string;
+  city?: string;
+  trip: string;
+  travelMonth?: string;
+  rating: number;
+  review: string;
+}
+
+export function buildReviewMessage(r: ReviewSubmission): string {
+  return [
+    `Assalamu Alaikum, Shine Star. I'd like to share a review of my trip.`,
+    ``,
+    line("Name", r.name),
+    line("City", r.city),
+    line("Trip", r.trip),
+    line("Travelled in", r.travelMonth),
+    line("Rating", `${r.rating} out of 5`),
+    ``,
+    `*My review:*`,
+    r.review.trim(),
+    ``,
+    `You may publish this on your website after checking my booking.`,
+  ]
+    .filter((l, i, arr) => l !== "" || (arr[i - 1] ?? "") !== "")
+    .join("\n");
 }
 
 export function buildWhatsAppURL(message: string, number = WHATSAPP_NUMBER): string {
