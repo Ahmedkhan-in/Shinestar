@@ -28,6 +28,9 @@ const VISA_TYPES: Option[] = [
   { value: "Transit", label: "Transit / layover", description: "Not sure if your connection needs a visa" },
 ];
 
+// Visa types that only ever go to one country — the country question is filled in and skipped
+const IMPLIED_DESTINATION: Record<string, string> = { Umrah: "Saudi Arabia" };
+
 const STEPS: { id: StepId; question: string; options?: Option[]; columns?: 1 | 2 | 3 }[] = [
   { id: "visaType", question: "Which visa do you need?", options: VISA_TYPES, columns: 1 },
   {
@@ -91,6 +94,9 @@ const SUMMARY_LABELS: Record<Exclude<StepId, "whatsapp">, string> = {
 
 type Answers = Partial<Record<StepId, string>> & { countryCode?: string };
 
+const isSkipped = (a: Answers, index: number) =>
+  STEPS[index].id === "destination" && !!a.visaType && a.visaType in IMPLIED_DESTINATION;
+
 interface VisaEnquirySheetProps {
   onClose: () => void;
   initialType?: string;
@@ -100,11 +106,11 @@ interface VisaEnquirySheetProps {
 export function VisaEnquirySheet({ onClose, initialType, initialDestination }: VisaEnquirySheetProps) {
   const [answers, setAnswers] = useState<Answers>(() => ({
     visaType: initialType,
-    destination: initialDestination,
+    destination: initialDestination ?? (initialType ? IMPLIED_DESTINATION[initialType] : undefined),
   }));
   // Start at the first question that isn't already answered by the button that opened the sheet
   const [stepIndex, setStepIndex] = useState(() => {
-    const first = STEPS.findIndex((s) => s.id !== "whatsapp" && !(s.id === "visaType" ? initialType : s.id === "destination" ? initialDestination : undefined));
+    const first = STEPS.findIndex((s) => s.id !== "whatsapp" && !answers[s.id]);
     return first === -1 ? 0 : first;
   });
   const [direction, setDirection] = useState<"forward" | "back">("forward");
@@ -125,24 +131,35 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
   const progress = ((stepIndex + 1) / STEPS.length) * 100;
   const animationClass = direction === "forward" ? "animate-slide-from-right" : "animate-slide-from-left";
 
-  const next = () => {
+  // `a` is passed when answers were just changed and state hasn't caught up yet
+  const next = (a: Answers = answers) => {
     setDirection("forward");
-    if (stepIndex < STEPS.length - 1) setStepIndex((i) => i + 1);
+    let i = stepIndex + 1;
+    while (i < STEPS.length && isSkipped(a, i)) i++;
+    if (i < STEPS.length) setStepIndex(i);
     else setPhase("summary");
   };
   const back = () => {
     setDirection("back");
-    if (phase === "summary") setPhase("questions");
-    else setStepIndex((i) => Math.max(0, i - 1));
+    if (phase === "summary") return setPhase("questions");
+    let i = stepIndex - 1;
+    while (i > 0 && isSkipped(answers, i)) i--;
+    setStepIndex(Math.max(0, i));
   };
 
   const select = (value: string) => {
     if (advancing.current) return; // ignore a second tap while the step is changing
-    setAnswers((a) => ({ ...a, [step.id]: value }));
+    const updated: Answers = { ...answers, [step.id]: value };
+    if (step.id === "visaType") {
+      // Fill in the implied country, and drop one left over from a previous Umrah choice
+      const wasImplied = answers.visaType && IMPLIED_DESTINATION[answers.visaType] === answers.destination;
+      updated.destination = IMPLIED_DESTINATION[value] ?? (wasImplied ? undefined : answers.destination);
+    }
+    setAnswers(updated);
     // Auto-advance after a tap, same timing as the price planner
     advancing.current = true;
     setTimeout(() => {
-      next();
+      next(updated);
       advancing.current = false;
     }, 280);
   };
@@ -241,7 +258,7 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
               {answers[step.id] && (
                 <button
                   type="button"
-                  onClick={next}
+                  onClick={() => next()}
                   className="text-body-sm font-semibold text-brand-blue hover:text-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded px-1 min-h-[44px]"
                 >
                   Next →
