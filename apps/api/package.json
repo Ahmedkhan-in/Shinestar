@@ -1,0 +1,6 @@
+{
+  "name": "@platform/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend API: packages, leads, agencies, WhatsApp and Meta webhooks"
+}

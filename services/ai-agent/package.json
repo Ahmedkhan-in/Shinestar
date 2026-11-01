@@ -1,0 +1,6 @@
+{
+  "name": "@platform/ai-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "WhatsApp AI agent that answers chats and fills CRM leads"
+}

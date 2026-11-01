@@ -1,0 +1,6 @@
+{
+  "name": "@platform/dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agency admin dashboard: prices, packages, CRM leads, analytics"
+}

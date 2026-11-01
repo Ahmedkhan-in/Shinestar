@@ -28,3 +28,9 @@ Thumbs.db
 
 # Design inspector output (local only)
 .taste-skill/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Supabase local
+database/supabase/.temp/
