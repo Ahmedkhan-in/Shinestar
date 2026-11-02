@@ -1,7 +1,11 @@
 // Company facts used across pages. One place to update before launch.
 // Anything not yet confirmed by the business is marked with a TODO.
 
-export const SITE_URL = "https://shinestartravel.pk"; // TODO: confirm production domain
+// Used for canonical links, Open Graph and structured data, so it must be an address that loads.
+// Netlify sets URL at build time to the site's primary address — it switches to the custom domain
+// automatically once one is connected. NEXT_PUBLIC_SITE_URL overrides it if ever needed.
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? process.env.URL ?? "https://shinestartoursandtravel.netlify.app";
 
 export const company = {
   name: "Shine Star Tours and Travel",

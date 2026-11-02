@@ -4,11 +4,8 @@ import { useState } from "react";
 import { Check, ChevronRight } from "lucide-react";
 import type { CustomPlannerAnswers, LandingContext } from "./types";
 import { STANDARD_TIERS } from "./types";
-import {
-  buildHomeMessage,
-  buildLandingMessage,
-  buildWhatsAppURL,
-} from "./whatsapp-message";
+import { buildHomeMessage, buildLandingMessage } from "./whatsapp-message";
+import { buildWhatsAppURL } from "@/lib/whatsapp";
 import { trackPlannerEvent } from "./use-trip-planner";
 
 interface PlannerSummaryProps {

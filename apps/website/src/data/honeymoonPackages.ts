@@ -70,15 +70,6 @@ export const honeymoonPackages: TravelPackage[] = [
       { question: "Do I need a visa?", answer: "Pakistani passport holders receive visa-on-arrival in the Maldives, valid 30 days. No pre-application required." },
       { question: "Can we upgrade to a 5-star resort?", answer: "Yes. Multiple 5-star and luxury overwater options are available. Inquire on WhatsApp with your budget for a tailored quote." },
     ],
-    plannerConfig: {
-      packageName: "Maldives Honeymoon",
-      questions: [
-        { id: "travelDates", question: "When are you planning your honeymoon?", type: "chips", options: [{ value: "Within 1 month", label: "Within 1 month" }, { value: "1–3 months", label: "1–3 months" }, { value: "3–6 months", label: "3–6 months" }, { value: "After Nikah (flexible)", label: "After Nikah (flexible)" }] },
-        { id: "experience", question: "What experience matters most?", type: "cards", options: [{ value: "Privacy and seclusion", label: "Privacy & seclusion" }, { value: "Water activities and adventure", label: "Water adventures" }, { value: "Luxury and comfort", label: "Pure luxury" }, { value: "Romantic gestures arranged", label: "Romantic moments" }] },
-        { id: "budget", question: "Budget for the honeymoon?", type: "chips", options: [{ value: "PKR 280,000–350,000 per couple", label: "PKR 280k–350k" }, { value: "PKR 350,000–500,000 per couple", label: "PKR 350k–500k" }, { value: "PKR 500,000+ per couple", label: "PKR 500k+" }] },
-        { id: "whatsappNumber", question: "Your WhatsApp number?", type: "input", placeholder: "e.g. 0300 1234567" },
-      ],
-    },
     seo: {
       title: "Maldives Honeymoon Package from Karachi | Overwater Villa | Shine Star Tours and Travel",
       description: "7-day Maldives honeymoon from Karachi. Overwater villa, private beach dinner, dolphin cruise. Halal-friendly. Plan your honeymoon on WhatsApp.",
@@ -152,15 +143,6 @@ export const honeymoonPackages: TravelPackage[] = [
       { question: "Is Bali halal-friendly for Pakistani travelers?", answer: "Bali has a growing halal food scene, especially in Seminyak and Nusa Dua. We provide a curated halal restaurant list. Some resorts offer halal-certified kitchens." },
       { question: "Do I need a visa for Indonesia?", answer: "Pakistani passport holders receive a visa-on-arrival for Indonesia (USD 35 per person, payable at the airport). We confirm current requirements at booking." },
     ],
-    plannerConfig: {
-      packageName: "Bali Honeymoon",
-      questions: [
-        { id: "travelDates", question: "When are you planning your honeymoon?", type: "chips", options: [{ value: "Within 1 month", label: "Within 1 month" }, { value: "1–3 months", label: "1–3 months" }, { value: "3–6 months", label: "3–6 months" }, { value: "Flexible", label: "Flexible" }] },
-        { id: "experience", question: "What kind of Bali do you want?", type: "cards", options: [{ value: "Culture and temples", label: "Culture & temples" }, { value: "Beach and relaxation", label: "Beach & relaxation" }, { value: "Jungle and adventure", label: "Jungle & adventure" }, { value: "All of the above", label: "All of the above" }] },
-        { id: "budget", question: "Budget per couple?", type: "chips", options: [{ value: "PKR 160,000–220,000", label: "PKR 160k–220k" }, { value: "PKR 220,000–300,000", label: "PKR 220k–300k" }, { value: "PKR 300,000+", label: "PKR 300k+" }] },
-        { id: "whatsappNumber", question: "Your WhatsApp number?", type: "input", placeholder: "e.g. 0300 1234567" },
-      ],
-    },
     seo: {
       title: "Bali Honeymoon Package from Karachi | Ubud & Seminyak | Shine Star Tours and Travel",
       description: "6-day Bali honeymoon from Karachi. Ubud jungle villa, Seminyak beach, Uluwatu sunset. Private car throughout. Halal-friendly options.",
@@ -239,15 +221,6 @@ export const honeymoonPackages: TravelPackage[] = [
       { question: "Is the hot-air balloon guaranteed?", answer: "Balloon flights are weather-dependent and may be cancelled for safety. In that case, a refund or alternative activity is arranged. We book a reputable licensed operator." },
       { question: "Is Turkey halal-friendly?", answer: "Turkey is a Muslim-majority country. Halal food is the norm everywhere. Mosques are in every neighbourhood. It is one of the most comfortable destinations for Pakistani honeymooners." },
     ],
-    plannerConfig: {
-      packageName: "Turkey Honeymoon",
-      questions: [
-        { id: "travelDates", question: "When are you planning your honeymoon?", type: "chips", options: [{ value: "Within 1 month", label: "Within 1 month" }, { value: "1–3 months", label: "1–3 months" }, { value: "3–6 months", label: "3–6 months" }, { value: "Flexible", label: "Flexible" }] },
-        { id: "experience", question: "What experience is most important to you?", type: "cards", options: [{ value: "History and culture", label: "History & culture" }, { value: "Nature and landscapes", label: "Nature & landscapes" }, { value: "Romance and luxury", label: "Romance & luxury" }, { value: "All of the above", label: "All of the above" }] },
-        { id: "budget", question: "Budget per couple?", type: "chips", options: [{ value: "PKR 200,000–280,000", label: "PKR 200k–280k" }, { value: "PKR 280,000–380,000", label: "PKR 280k–380k" }, { value: "PKR 380,000+", label: "PKR 380k+" }] },
-        { id: "whatsappNumber", question: "Your WhatsApp number?", type: "input", placeholder: "e.g. 0300 1234567" },
-      ],
-    },
     seo: {
       title: "Turkey Honeymoon Package from Karachi | Istanbul Cappadocia | Shine Star Tours and Travel",
       description: "8-day Turkey honeymoon from Karachi. Istanbul, Cappadocia balloon, Pamukkale. Halal-friendly. Plan on WhatsApp.",

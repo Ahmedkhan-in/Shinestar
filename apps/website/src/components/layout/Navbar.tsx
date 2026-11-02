@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { whatsappLink } from "@/data/site";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
@@ -93,7 +94,7 @@ export function Navbar() {
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <a
-            href="https://wa.me/923462646201"
+            href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -105,7 +106,7 @@ export function Navbar() {
             WhatsApp
           </a>
           <a
-            href="https://wa.me/923462646201"
+            href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="whitespace-nowrap bg-brand-blue text-white text-label font-semibold px-4 py-2 rounded-btn hover:bg-brand-sky active:scale-[0.98] transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
@@ -155,7 +156,7 @@ export function Navbar() {
           </ul>
           <div className="px-4 pb-5">
             <a
-              href="https://wa.me/923462646201"
+              href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center min-h-[52px] bg-brand-blue text-white text-label font-semibold px-4 rounded-btn hover:bg-brand-sky transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"

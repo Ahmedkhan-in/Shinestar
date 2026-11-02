@@ -158,70 +158,6 @@ export const umrahPackages: TravelPackage[] = [
           "Makkah ziyarat includes: Jabal al-Noor (Hira Cave), Jabal Thawr, Mina, Muzdalifah, and Arafat. Madinah ziyarat includes: Masjid Quba, Masjid Qiblatayn, Uhud Mountain, Baqi Cemetery, and Madinah date farms.",
       },
     ],
-    plannerConfig: {
-      packageName: "Umrah 7 Days",
-      questions: [
-        {
-          id: "departureCity",
-          question: "Where will you be departing from?",
-          type: "chips",
-          options: [
-            { value: "Karachi", label: "Karachi" },
-            { value: "Lahore", label: "Lahore" },
-            { value: "Islamabad", label: "Islamabad" },
-            { value: "Other city", label: "Other city" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "How many pilgrims?",
-          type: "chips",
-          options: [
-            { value: "1 person", label: "Just me" },
-            { value: "2 people", label: "2 people (couple)" },
-            { value: "3–5 people", label: "3–5 people (family)" },
-            { value: "6+ people", label: "6+ people (group)" },
-          ],
-        },
-        {
-          id: "hotelPreference",
-          question: "Hotel preference in Makkah?",
-          type: "cards",
-          options: [
-            { value: "Standard (within 1km of Haram)", label: "Standard" },
-            { value: "Premium (within 500m of Haram)", label: "Premium" },
-            { value: "Luxury (Haram-facing 5-star)", label: "Luxury" },
-          ],
-        },
-        {
-          id: "travelDates",
-          question: "Preferred travel month?",
-          type: "chips",
-          options: [
-            { value: "Ramadan", label: "Ramadan" },
-            { value: "Muharram", label: "Muharram" },
-            { value: "Rabi al-Awwal", label: "Rabi al-Awwal" },
-            { value: "Flexible", label: "Any month — flexible" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "Budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 160,000–200,000", label: "PKR 160k–200k" },
-            { value: "PKR 200,000–260,000", label: "PKR 200k–260k" },
-            { value: "PKR 260,000+", label: "PKR 260k+ (premium)" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "Your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-        },
-      ],
-    },
     seo: {
       title: "Umrah 7 Days Package from Karachi | Near Haram | Shine Star Tours and Travel",
       description:
@@ -301,17 +237,6 @@ export const umrahPackages: TravelPackage[] = [
       { question: "Can we extend to 14 days?", answer: "Yes. Our Umrah 14-day package is available for those seeking the most complete experience. Ask on WhatsApp." },
       { question: "What is included in the Umrah kit?", answer: "Men receive an ihram set (two white sheets) and a belt. Women receive prayer-appropriate garments if required. A complete duaa booklet with transliteration." },
     ],
-    plannerConfig: {
-      packageName: "Umrah 10 Days",
-      questions: [
-        { id: "departureCity", question: "Departure city?", type: "chips", options: [{ value: "Karachi", label: "Karachi" }, { value: "Lahore", label: "Lahore" }, { value: "Islamabad", label: "Islamabad" }, { value: "Other", label: "Other" }] },
-        { id: "travelers", question: "Number of pilgrims?", type: "chips", options: [{ value: "1 person", label: "Just me" }, { value: "2 people", label: "Couple" }, { value: "3–5 people", label: "Family" }, { value: "6+ people", label: "Group" }] },
-        { id: "hotelPreference", question: "Hotel preference?", type: "cards", options: [{ value: "Standard (4-star)", label: "Standard 4-star" }, { value: "Premium (5-star near Haram)", label: "Premium 5-star" }] },
-        { id: "travelDates", question: "Preferred month?", type: "chips", options: [{ value: "Ramadan", label: "Ramadan" }, { value: "Muharram", label: "Muharram" }, { value: "Any month", label: "Any month" }] },
-        { id: "budget", question: "Budget per person?", type: "chips", options: [{ value: "PKR 200,000–250,000", label: "PKR 200k–250k" }, { value: "PKR 250,000–320,000", label: "PKR 250k–320k" }, { value: "PKR 320,000+", label: "PKR 320k+" }] },
-        { id: "whatsappNumber", question: "Your WhatsApp number?", type: "input", placeholder: "e.g. 0300 1234567" },
-      ],
-    },
     seo: {
       title: "Umrah 10 Days Package from Karachi | Shine Star Tours and Travel",
       description: "10-day Umrah from Karachi. 5 nights Makkah near Haram, 4 nights Madinah near Nabawi. Full ziyarat, visa, dedicated guide.",
@@ -388,17 +313,6 @@ export const umrahPackages: TravelPackage[] = [
       { question: "Is 14 days necessary?", answer: "Not necessary, but deeply rewarding. It is the choice of those who want extended time in both cities, multiple Umrah, and no sense of rush." },
       { question: "What is included in the Taif excursion?", answer: "A full-day road trip to Taif: rose water farm, honey market, the mountain greenery of Sa'ada, and the Taif cable car (seasonal)." },
     ],
-    plannerConfig: {
-      packageName: "Umrah 14 Days",
-      questions: [
-        { id: "departureCity", question: "Departure city?", type: "chips", options: [{ value: "Karachi", label: "Karachi" }, { value: "Lahore", label: "Lahore" }, { value: "Islamabad", label: "Islamabad" }, { value: "Other", label: "Other" }] },
-        { id: "travelers", question: "Number of pilgrims?", type: "chips", options: [{ value: "1 person", label: "Just me" }, { value: "2 people", label: "Couple" }, { value: "3–5 people", label: "Family" }, { value: "6+ people", label: "Group" }] },
-        { id: "hotelPreference", question: "Hotel preference?", type: "cards", options: [{ value: "Premium 4-star", label: "Premium 4-star" }, { value: "Luxury 5-star near Haram", label: "Luxury 5-star" }] },
-        { id: "travelDates", question: "Preferred travel month?", type: "chips", options: [{ value: "Ramadan", label: "Ramadan" }, { value: "Muharram", label: "Muharram" }, { value: "Any month", label: "Any month" }] },
-        { id: "budget", question: "Budget per person?", type: "chips", options: [{ value: "PKR 260,000–320,000", label: "PKR 260k–320k" }, { value: "PKR 320,000–400,000", label: "PKR 320k–400k" }, { value: "PKR 400,000+", label: "PKR 400k+" }] },
-        { id: "whatsappNumber", question: "Your WhatsApp number?", type: "input", placeholder: "e.g. 0300 1234567" },
-      ],
-    },
     seo: {
       title: "Umrah 14 Days Package from Karachi | Complete Saudi Journey | Shine Star",
       description: "14-day Umrah from Karachi. Makkah, Madinah, Taif, Jeddah. Premium near-Haram hotels, full ziyarat, small group.",

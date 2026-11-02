@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { whatsappLink } from "@/data/site";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function AboutSection() {
@@ -46,7 +47,7 @@ export function AboutSection() {
             <Reveal delay={200}>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <a
-                  href="https://wa.me/923462646201"
+                  href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-brand-blue text-white text-label font-semibold px-5 py-3.5 rounded-btn hover:bg-brand-sky transition-colors text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 min-h-[48px] flex items-center justify-center"

@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { whatsappLink } from "@/data/site";
 import Image from "next/image";
 import { Check, X, Star, Plus, Minus } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import type { TravelPackage } from "@/types";
+
+const CustomPricePlanner = dynamic(() => import("@/components/planner/custom-price-planner").then((m) => m.CustomPricePlanner), { ssr: false });
 
 // ─── Social Proof ─────────────────────────────────────────────────────────────
 export function SocialProof({ pkg }: { pkg: TravelPackage }) {
@@ -363,20 +367,6 @@ export function FAQSection({ pkg }: { pkg: TravelPackage }) {
 // ─── Package Conversion Section ───────────────────────────────────────────────
 export function PackageConversion({ pkg }: { pkg: TravelPackage }) {
   const [plannerOpen, setPlannerOpen] = useState(false);
-  const [TripPlannerComponent, setTripPlannerComponent] =
-    useState<React.ComponentType<{
-      config: TravelPackage["plannerConfig"];
-      category: TravelPackage["category"];
-      onClose: () => void;
-    }> | null>(null);
-
-  const openPlanner = async () => {
-    if (!TripPlannerComponent) {
-      const { TripPlanner } = await import("@/components/planner/TripPlanner");
-      setTripPlannerComponent(() => TripPlanner);
-    }
-    setPlannerOpen(true);
-  };
 
   return (
     <section className="bg-brand-footer py-12 md:py-16">
@@ -403,13 +393,13 @@ export function PackageConversion({ pkg }: { pkg: TravelPackage }) {
         <Reveal delay={150}>
           <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
-              onClick={openPlanner}
+              onClick={() => setPlannerOpen(true)}
               className="bg-brand-gold text-brand-ink text-label font-semibold px-7 py-4 rounded-btn hover:bg-brand-champagne transition-colors w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-footer min-h-[52px]"
             >
               Check availability for my dates
             </button>
             <a
-              href="https://wa.me/923462646201"
+              href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="border border-white/35 text-white text-label font-semibold px-7 py-4 rounded-btn hover:bg-white/10 transition-colors w-full sm:w-auto text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white min-h-[52px] flex items-center justify-center"
@@ -420,10 +410,16 @@ export function PackageConversion({ pkg }: { pkg: TravelPackage }) {
         </Reveal>
       </div>
 
-      {plannerOpen && TripPlannerComponent && (
-        <TripPlannerComponent
-          config={pkg.plannerConfig}
-          category={pkg.category}
+      {plannerOpen && (
+        <CustomPricePlanner
+          mode="landing"
+          context={{
+            packageName: pkg.title,
+            destination: pkg.destination,
+            category: pkg.category,
+            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
+          }}
+          sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
       )}

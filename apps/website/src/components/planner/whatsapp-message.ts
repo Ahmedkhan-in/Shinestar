@@ -1,8 +1,6 @@
 import type { CustomPlannerAnswers, TravelStandard } from "./types";
 import type { LandingContext } from "./types";
 
-export const WHATSAPP_NUMBER = "923462646201";
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function standardLabel(s?: string): string {
@@ -16,13 +14,6 @@ function formatWA(countryCode?: string, number?: string): string | undefined {
   if (!number) return undefined;
   const code = countryCode ?? "+92";
   return `${code} ${number}`;
-}
-
-export function buildWhatsAppURL(
-  message: string,
-  number = WHATSAPP_NUMBER
-): string {
-  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 // ─── Home page message ────────────────────────────────────────────────────────

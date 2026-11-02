@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { whatsappLink } from "@/data/site";
 import Image from "next/image";
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
@@ -30,7 +31,7 @@ export function FinalCTA({
   primaryLabel = "Check my custom package price",
   primary = "price-planner",
   whatsappLabel = "Message us on WhatsApp",
-  whatsappHref = "https://wa.me/923462646201",
+  whatsappHref = whatsappLink(),
   image = "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80&fit=crop",
   imageAlt = "Aircraft at golden hour",
 }: FinalCTAProps = {}) {

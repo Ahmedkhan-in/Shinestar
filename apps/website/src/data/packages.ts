@@ -188,73 +188,6 @@ export const internationalPackages: TravelPackage[] = [
           "Cancellation terms vary by airline and hotel confirmation. We will share the full policy with your booking confirmation. We recommend travel insurance for flexibility.",
       },
     ],
-    plannerConfig: {
-      packageName: "Thailand 7 Days",
-      questions: [
-        {
-          id: "destination",
-          question: "Which destinations interest you most?",
-          type: "chips",
-          options: [
-            { value: "Bangkok + Pattaya + Phuket", label: "Full Thailand (7 days)" },
-            { value: "Bangkok + Phuket", label: "Bangkok & Phuket (5 days)" },
-            { value: "Bangkok only", label: "Bangkok only" },
-            { value: "Not sure yet", label: "Help me decide" },
-          ],
-        },
-        {
-          id: "travelDates",
-          question: "When are you planning to travel?",
-          type: "chips",
-          options: [
-            { value: "Within 1 month", label: "Within 1 month" },
-            { value: "1–3 months", label: "1–3 months" },
-            { value: "3–6 months", label: "3–6 months" },
-            { value: "Flexible", label: "I'm flexible" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "How many travelers are coming?",
-          type: "chips",
-          options: [
-            { value: "1 person", label: "Just me" },
-            { value: "2 people", label: "2 people (couple)" },
-            { value: "3–5 people", label: "3–5 people" },
-            { value: "6+ people", label: "6+ (family/group)" },
-          ],
-        },
-        {
-          id: "travelerType",
-          question: "What best describes your group?",
-          type: "cards",
-          options: [
-            { value: "Family with children", label: "Family with children" },
-            { value: "Couple", label: "Couple" },
-            { value: "Friends group", label: "Friends group" },
-            { value: "Solo traveler", label: "Solo traveler" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "What is your approximate budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 100,000–140,000", label: "PKR 100k–140k" },
-            { value: "PKR 140,000–200,000", label: "PKR 140k–200k" },
-            { value: "PKR 200,000+", label: "PKR 200k+" },
-            { value: "Not sure", label: "Not sure yet" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "What is your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-          optional: false,
-        },
-      ],
-    },
     seo: {
       title: "Thailand 7 Days Package from Karachi | Bangkok Pattaya Phuket | Shine Star Tours and Travel",
       description:
@@ -427,59 +360,6 @@ export const internationalPackages: TravelPackage[] = [
         answer: "Yes. We offer a Malaysia + Singapore combo (10 days) — ask for it on WhatsApp.",
       },
     ],
-    plannerConfig: {
-      packageName: "Malaysia 8 Days",
-      questions: [
-        {
-          id: "destination",
-          question: "Which part of Malaysia interests you most?",
-          type: "chips",
-          options: [
-            { value: "KL + Cameron + Langkawi", label: "Full tour (8 days)" },
-            { value: "KL only", label: "Kuala Lumpur only" },
-            { value: "KL + Langkawi", label: "KL & Langkawi" },
-            { value: "Malaysia + Singapore", label: "Add Singapore" },
-          ],
-        },
-        {
-          id: "travelDates",
-          question: "When are you planning to travel?",
-          type: "chips",
-          options: [
-            { value: "Within 1 month", label: "Within 1 month" },
-            { value: "1–3 months", label: "1–3 months" },
-            { value: "3–6 months", label: "3–6 months" },
-            { value: "Flexible", label: "I'm flexible" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "How many travelers?",
-          type: "chips",
-          options: [
-            { value: "2 people", label: "2 people" },
-            { value: "3–5 people", label: "3–5 people" },
-            { value: "6+ people", label: "6+ people" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "Budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 120,000–160,000", label: "PKR 120k–160k" },
-            { value: "PKR 160,000–220,000", label: "PKR 160k–220k" },
-            { value: "PKR 220,000+", label: "PKR 220k+" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "Your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-        },
-      ],
-    },
     seo: {
       title: "Malaysia 8 Days Tour from Karachi | Halal-Friendly | Shine Star Tours and Travel",
       description:
@@ -609,49 +489,6 @@ export const internationalPackages: TravelPackage[] = [
         answer: "Yes. Our Malaysia + Singapore (10 days) combo is one of our most popular itineraries.",
       },
     ],
-    plannerConfig: {
-      packageName: "Singapore 5 Days",
-      questions: [
-        {
-          id: "travelDates",
-          question: "When do you plan to travel?",
-          type: "chips",
-          options: [
-            { value: "Within 1 month", label: "Within 1 month" },
-            { value: "1–3 months", label: "1–3 months" },
-            { value: "3–6 months", label: "3–6 months" },
-            { value: "Flexible", label: "I'm flexible" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "Number of travelers?",
-          type: "chips",
-          options: [
-            { value: "1 person", label: "Just me" },
-            { value: "2 people", label: "2 people" },
-            { value: "3–5 people", label: "3–5 people" },
-            { value: "6+ people", label: "6+ people" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "Budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 100,000–130,000", label: "PKR 100k–130k" },
-            { value: "PKR 130,000–180,000", label: "PKR 130k–180k" },
-            { value: "PKR 180,000+", label: "PKR 180k+" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "Your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-        },
-      ],
-    },
     seo: {
       title: "Singapore 5 Days Tour Package from Karachi | Shine Star Tours and Travel",
       description: "5-day Singapore package from Karachi. Gardens by the Bay, Marina Bay Sands, Sentosa. Visa assistance included.",
@@ -784,47 +621,6 @@ export const internationalPackages: TravelPackage[] = [
         answer: "Pakistani passport holders require an Electronic Travel Authorization (ETA) for Sri Lanka. We manage this as part of the package.",
       },
     ],
-    plannerConfig: {
-      packageName: "Sri Lanka 6 Days",
-      questions: [
-        {
-          id: "travelDates",
-          question: "When do you plan to travel?",
-          type: "chips",
-          options: [
-            { value: "Within 1 month", label: "Within 1 month" },
-            { value: "1–3 months", label: "1–3 months" },
-            { value: "Flexible", label: "I'm flexible" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "Number of travelers?",
-          type: "chips",
-          options: [
-            { value: "2 people", label: "2 people" },
-            { value: "3–5 people", label: "Family (3–5)" },
-            { value: "6+ people", label: "Group (6+)" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "Budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 90,000–120,000", label: "PKR 90k–120k" },
-            { value: "PKR 120,000–160,000", label: "PKR 120k–160k" },
-            { value: "PKR 160,000+", label: "PKR 160k+" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "Your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-        },
-      ],
-    },
     seo: {
       title: "Sri Lanka 6 Days Tour from Karachi | Sigiriya Kandy Galle | Shine Star Tours and Travel",
       description: "6-day Sri Lanka tour package from Karachi. Sigiriya, Kandy, Galle, scenic Ella train. Private vehicle throughout.",
@@ -944,59 +740,6 @@ export const internationalPackages: TravelPackage[] = [
         answer: "Absolutely. Dubai is one of the safest and most family-friendly destinations in the world, with world-class facilities for all ages.",
       },
     ],
-    plannerConfig: {
-      packageName: "Dubai 5 Days",
-      questions: [
-        {
-          id: "travelDates",
-          question: "When do you plan to visit Dubai?",
-          type: "chips",
-          options: [
-            { value: "Within 1 month", label: "Within 1 month" },
-            { value: "1–3 months", label: "1–3 months" },
-            { value: "3–6 months", label: "3–6 months" },
-            { value: "Flexible", label: "I'm flexible" },
-          ],
-        },
-        {
-          id: "travelers",
-          question: "Number of travelers?",
-          type: "chips",
-          options: [
-            { value: "2 people", label: "2 people" },
-            { value: "3–5 people", label: "Family (3–5)" },
-            { value: "6+ people", label: "Group (6+)" },
-          ],
-        },
-        {
-          id: "travelerType",
-          question: "What type of trip?",
-          type: "cards",
-          options: [
-            { value: "Family holiday", label: "Family holiday" },
-            { value: "Couple / honeymoon", label: "Couple / honeymoon" },
-            { value: "Friends trip", label: "Friends trip" },
-            { value: "Business + leisure", label: "Business + leisure" },
-          ],
-        },
-        {
-          id: "budget",
-          question: "Budget per person?",
-          type: "chips",
-          options: [
-            { value: "PKR 80,000–110,000", label: "PKR 80k–110k" },
-            { value: "PKR 110,000–160,000", label: "PKR 110k–160k" },
-            { value: "PKR 160,000+", label: "PKR 160k+" },
-          ],
-        },
-        {
-          id: "whatsappNumber",
-          question: "Your WhatsApp number?",
-          type: "input",
-          placeholder: "e.g. 0300 1234567",
-        },
-      ],
-    },
     seo: {
       title: "Dubai 5 Days Package from Karachi | Family & Couples | Shine Star Tours and Travel",
       description: "5-day Dubai tour from Karachi. Burj Khalifa, desert safari, dhow cruise. Visa assistance included. Halal-friendly.",

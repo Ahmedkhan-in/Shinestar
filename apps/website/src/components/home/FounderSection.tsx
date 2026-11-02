@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Play } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { reels } from "@/data/reels";
-import { company } from "@/data/site";
+import { company, whatsappLink } from "@/data/site";
 
 // NOTE: Metrics below are sample data — replace with real figures before launch
 const metrics = [
@@ -36,7 +36,7 @@ export function FounderSection() {
               {/* Play button */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <a
-                  href="https://wa.me/923462646201"
+                  href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-modal hover:scale-110 transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"

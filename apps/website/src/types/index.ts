@@ -1,4 +1,8 @@
-export type PackageCategory = "international" | "umrah" | "honeymoon";
+import type { PackageCategory as RecordCategory } from "@platform/shared";
+
+// Categories shown as package pages on the website — the database category list minus visa,
+// which has its own page. Derived so the two lists can never drift apart.
+export type PackageCategory = Exclude<RecordCategory, "visa">;
 
 export interface ItineraryDay {
   day: number;
@@ -33,28 +37,6 @@ export interface FAQ {
   answer: string;
 }
 
-export type PlannerQuestionType = "chips" | "cards" | "input" | "date";
-
-export interface PlannerOption {
-  value: string;
-  label: string;
-  icon?: string;
-}
-
-export interface PlannerQuestion {
-  id: string;
-  question: string;
-  type: PlannerQuestionType;
-  optional?: boolean;
-  options?: PlannerOption[];
-  placeholder?: string;
-}
-
-export interface PlannerConfig {
-  packageName: string;
-  questions: PlannerQuestion[];
-}
-
 export interface SEOMeta {
   title: string;
   description: string;
@@ -82,7 +64,6 @@ export interface TravelPackage {
   accommodations: Accommodation[];
   reviews: Review[];
   faqs: FAQ[];
-  plannerConfig: PlannerConfig;
   seo: SEOMeta;
   featured: boolean;
   badge?: string;

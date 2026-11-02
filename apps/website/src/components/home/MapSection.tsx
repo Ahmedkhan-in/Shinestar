@@ -1,4 +1,5 @@
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import { company, whatsappLink } from "@/data/site";
 import { Reveal } from "@/components/ui/Reveal";
 
 const MAPS_URL = "https://maps.app.goo.gl/URjwPcr9nAv2NsMu8";
@@ -42,12 +43,12 @@ export function MapSection({ heading = "Find us in Karachi", extra }: { heading?
                 <div>
                   <p className="text-body-md font-semibold text-brand-ink">WhatsApp & Phone</p>
                   <a
-                    href="https://wa.me/923462646201"
+                    href={whatsappLink()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-body-md text-brand-blue hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded mt-1 inline-block"
                   >
-                    +92 346 2646201
+                    {company.whatsappDisplay}
                   </a>
                 </div>
               </li>

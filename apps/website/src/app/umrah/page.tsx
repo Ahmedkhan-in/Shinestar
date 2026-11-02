@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { whatsappLink } from "@/data/site";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Check } from "lucide-react";
@@ -41,7 +42,7 @@ export default function UmrahPage() {
             Planned around your spiritual journey — hotels near both Masajid, full ziyarat, visa support, and a guide who has made this journey many times before.
           </p>
           <a
-            href="https://wa.me/923462646201"
+            href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-6 bg-brand-gold text-brand-ink text-label font-semibold px-6 py-3.5 rounded-btn hover:bg-brand-champagne transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-footer min-h-[48px]"
