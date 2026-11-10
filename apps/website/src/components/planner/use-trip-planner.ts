@@ -10,16 +10,21 @@ import type {
 } from "./types";
 import { getVisibleSteps, impliedAnswers } from "./planner-config";
 
-// ─── Analytics (console-only — wire to your analytics provider when ready) ────
+// ─── Analytics hook (wire to your analytics provider when ready) ──────────────
 
+/**
+ * Funnel events for the planner. Silent on the live site; logged only while developing.
+ * Never pass personal data (phone numbers, names) — events may go to analytics later.
+ * When analytics are added, update the Privacy Policy first (app/privacy/page.tsx).
+ */
 export function trackPlannerEvent(
   name: string,
   data?: Record<string, string>
 ): void {
-  if (typeof window !== "undefined") {
-    // TODO: replace console.log with your analytics provider
-    // e.g. window.gtag?.("event", name, data);
-    console.log(`[Planner] ${name}`, data ?? {});
+  if (typeof window === "undefined") return;
+  // e.g. window.gtag?.("event", name, data);
+  if (process.env.NODE_ENV === "development") {
+    console.debug(`[Planner] ${name}`, data ?? {});
   }
 }
 
@@ -145,13 +150,16 @@ export function useTripPlanner({
           trackPlannerEvent("planner_started", { mode });
           started.current = true;
         }
-        if (key !== "countryCode") {
+        // The step is recorded for every answer; the value only when it isn't personal data
+        if (key === "whatsapp") {
+          trackPlannerEvent("planner_question_answered", { step: key });
+        } else if (key !== "countryCode") {
           trackPlannerEvent("planner_question_answered", { step: key, value });
         }
 
         // WhatsApp number captured — save partial lead for future CRM wiring
         if (key === "whatsapp") {
-          trackPlannerEvent("whatsapp_number_provided", { number: value });
+          trackPlannerEvent("whatsapp_number_provided", { mode });
           savePartialLead(next, context);
         }
 
