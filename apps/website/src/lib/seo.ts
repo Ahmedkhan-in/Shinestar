@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import type { TravelPackage } from "@/types";
 import { SITE_URL, company } from "@/data/site";
+import { CATEGORY_PAGES, packageHref } from "@/lib/package-links";
 
 /**
  * Link previews (WhatsApp, Facebook, X) want a 1200×630 image. Unsplash photos are
@@ -63,7 +65,10 @@ export function travelAgencySchema() {
     "@id": `${SITE_URL}/#organization`,
     name: company.name,
     url: SITE_URL,
+    logo: `${SITE_URL}/icon.svg`,
     telephone: `+${company.whatsappNumber}`,
+    // Real profiles only: they tell search engines these accounts are the same business
+    sameAs: [company.social.instagram],
     foundingDate: String(company.foundingYear),
     areaServed: { "@type": "Country", name: "Pakistan" },
     address: {
@@ -98,6 +103,86 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
       name: item.name,
       item: `${SITE_URL}${item.path}`,
     })),
+  };
+}
+
+/** Site-wide entities for the home page: the website itself and the agency behind it. */
+export function homeSchema() {
+  return {
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: company.name,
+        inLanguage: "en-PK",
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      },
+      travelAgencySchema(),
+    ],
+  };
+}
+
+/**
+ * Everything search and answer engines can read from a package page: the trip and its
+ * day-by-day plan, its FAQs, and the breadcrumb trail. A price is only included once it's
+ * real — sample prices would be quoted back to travellers as fact.
+ */
+export function packagePageSchema(pkg: TravelPackage) {
+  const path = packageHref(pkg);
+  const category = CATEGORY_PAGES[pkg.category];
+  const trip = {
+    "@type": "TouristTrip",
+    "@id": `${SITE_URL}${path}#trip`,
+    name: pkg.title,
+    description: pkg.shortDescription,
+    url: `${SITE_URL}${path}`,
+    image: ogImageUrl(pkg.heroImage),
+    touristType: pkg.category === "umrah" ? "Pilgrims" : pkg.category === "honeymoon" ? "Couples" : "Families and groups",
+    provider: { "@id": `${SITE_URL}/#organization` },
+    itinerary: {
+      "@type": "ItemList",
+      itemListElement: pkg.itinerary.map((d) => ({
+        "@type": "ListItem",
+        position: d.day,
+        name: `Day ${d.day}: ${d.title}`,
+        description: d.description,
+      })),
+    },
+    ...(pkg.startingPrice && !pkg.isSamplePricing
+      ? {
+          offers: {
+            "@type": "Offer",
+            price: pkg.startingPrice,
+            priceCurrency: pkg.currency,
+            availability: "https://schema.org/InStock",
+            url: `${SITE_URL}${path}`,
+          },
+        }
+      : {}),
+  };
+
+  return {
+    "@graph": [
+      trip,
+      ...(pkg.faqs.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: pkg.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer },
+              })),
+            },
+          ]
+        : []),
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: category.label, path: category.path },
+        { name: pkg.title, path },
+      ]),
+    ],
   };
 }
 

@@ -20,6 +20,7 @@ const footerLinks = {
     { href: "/visa", label: "Visa Assistance" },
     { href: "/reviews", label: "Reviews & Gallery" },
     { href: "/about", label: "About Us" },
+    { href: "/privacy", label: "Privacy Policy" },
   ],
 };
 

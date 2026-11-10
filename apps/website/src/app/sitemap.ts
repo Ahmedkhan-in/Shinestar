@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/visa", priority: 0.8 },
     { path: "/reviews", priority: 0.6 },
     { path: "/about", priority: 0.5 },
+    { path: "/privacy", priority: 0.2 },
     ...allPackages.map((p) => ({ path: packageHref(p), priority: 0.8 })),
   ];
   return pages.map((p) => ({

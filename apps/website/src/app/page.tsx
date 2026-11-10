@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import { homeSchema, jsonLdScript, pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
 import { HeroSearch, type SearchCatalogItem } from "@/components/home/HeroSearch";
 import { AirlineMarquee } from "@/components/home/AirlineMarquee";
@@ -45,6 +45,8 @@ function pick(p: (typeof internationalPackages)[number]) {
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(homeSchema())} />
+
       {/* 1. Full-screen Orbit Hero */}
       <Hero />
 
