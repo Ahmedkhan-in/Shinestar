@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/data/site";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { RevealObserver } from "@/components/ui/RevealObserver";
@@ -21,7 +22,10 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+// Defaults for any page that doesn't set its own; every page should still call pageMetadata()
 export const metadata: Metadata = {
+  // Lets relative image and canonical URLs resolve to the live address
+  metadataBase: new URL(SITE_URL),
   title: "Shine Star Tours and Travel — Umrah, International & Honeymoon Packages from Karachi",
   description:
     "Premium travel agency based in Karachi. Specialists in Umrah packages, international tours (Thailand, Malaysia, Dubai, Singapore, Sri Lanka), and honeymoon packages. Clear pricing, WhatsApp support.",

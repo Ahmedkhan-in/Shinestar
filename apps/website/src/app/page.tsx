@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
 import { HeroSearch, type SearchCatalogItem } from "@/components/home/HeroSearch";
 import { AirlineMarquee } from "@/components/home/AirlineMarquee";
@@ -14,11 +15,13 @@ import { umrahPackages } from "@/data/umrahPackages";
 import { honeymoonPackages } from "@/data/honeymoonPackages";
 import { testimonials } from "@/data/testimonials";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Shine Star Tours and Travel — Premium Travel from Karachi",
   description:
     "Pakistan's trusted travel agency for Umrah, international tours, and honeymoon packages. Transparent pricing, WhatsApp support, experienced team since 2018.",
-};
+  path: "/",
+  image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=85&fit=crop",
+});
 
 // Small index for the search bar — keeps full package data out of the client bundle
 const searchCatalog: SearchCatalogItem[] = [

@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/data/site";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Heart } from "lucide-react";
 import { honeymoonPackages } from "@/data/honeymoonPackages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Honeymoon Packages from Karachi | Maldives, Bali, Turkey | Shine Star Tours and Travel",
   description:
     "Romantic honeymoon packages from Karachi — Maldives overwater villas, Bali jungle retreats, Turkey's Cappadocia. Transparent pricing, personalised arrangements.",
-};
+  path: "/honeymoon",
+  image: honeymoonPackages[0].heroImage,
+});
 
 export default function HoneymoonPage() {
   return (

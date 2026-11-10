@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { RelatedPackages } from "@/components/packages/RelatedPackages";
+import { CATEGORY_PAGES, packageHref } from "@/lib/packages";
+import { breadcrumbSchema, jsonLdScript, pageMetadata } from "@/lib/seo";
 import { umrahPackages } from "@/data/umrahPackages";
 import { PackageHero } from "@/components/packages/PackageHero";
 import { DesktopBookingCard, StickyBookingBar } from "@/components/packages/StickyBookingBar";
@@ -26,7 +29,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const pkg = umrahPackages.find((p) => p.slug === slug);
   if (!pkg) return {};
-  return { title: pkg.seo.title, description: pkg.seo.description };
+  return pageMetadata({
+    title: pkg.seo.title,
+    description: pkg.seo.description,
+    keywords: pkg.seo.keywords,
+    path: packageHref(pkg),
+    image: pkg.heroImage,
+  });
 }
 
 export default async function UmrahDetailPage({ params }: PageProps) {
@@ -54,6 +63,17 @@ export default async function UmrahDetailPage({ params }: PageProps) {
         </div>
       </div>
       <PackageConversion pkg={pkg} />
+      <RelatedPackages pkg={pkg} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: CATEGORY_PAGES[pkg.category].label, path: CATEGORY_PAGES[pkg.category].path },
+            { name: pkg.title, path: packageHref(pkg) },
+          ])
+        )}
+      />
       <StickyBookingBar pkg={pkg} />
     </>
   );

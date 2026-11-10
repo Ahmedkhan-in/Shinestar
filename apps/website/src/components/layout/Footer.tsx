@@ -3,28 +3,19 @@ import { company, whatsappLink } from "@/data/site";
 import Image from "next/image";
 import { Logo } from "./Logo";
 import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react";
+import { CATEGORY_PAGES, packageHref, packagesByCategory } from "@/lib/packages";
+import type { PackageCategory } from "@/types";
+
+// Built from the package data, so a new package gets a footer link automatically
+const categoryLinks = (category: PackageCategory) => [
+  { href: CATEGORY_PAGES[category].path, label: CATEGORY_PAGES[category].label },
+  ...packagesByCategory[category].map((p) => ({ href: packageHref(p), label: p.title })),
+];
 
 const footerLinks = {
-  tours: [
-    { href: "/packages", label: "International Tours" },
-    { href: "/packages/thailand-7-days", label: "Thailand" },
-    { href: "/packages/malaysia-8-days", label: "Malaysia" },
-    { href: "/packages/dubai-5-days", label: "Dubai" },
-    { href: "/packages/singapore-5-days", label: "Singapore" },
-    { href: "/packages/sri-lanka-6-days", label: "Sri Lanka" },
-  ],
-  umrah: [
-    { href: "/umrah", label: "Umrah Packages" },
-    { href: "/umrah/umrah-7-days", label: "Umrah 7 Days" },
-    { href: "/umrah/umrah-10-days", label: "Umrah 10 Days" },
-    { href: "/umrah/umrah-14-days", label: "Umrah 14 Days" },
-  ],
-  honeymoon: [
-    { href: "/honeymoon", label: "Honeymoon Packages" },
-    { href: "/honeymoon/maldives-7-days", label: "Maldives" },
-    { href: "/honeymoon/bali-honeymoon-6-days", label: "Bali" },
-    { href: "/honeymoon/turkey-honeymoon-8-days", label: "Turkey" },
-  ],
+  tours: categoryLinks("international"),
+  umrah: categoryLinks("umrah"),
+  honeymoon: categoryLinks("honeymoon"),
   company: [
     { href: "/visa", label: "Visa Assistance" },
     { href: "/reviews", label: "Reviews & Gallery" },

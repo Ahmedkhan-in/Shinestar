@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { RelatedPackages } from "@/components/packages/RelatedPackages";
+import { CATEGORY_PAGES, packageHref } from "@/lib/packages";
+import { breadcrumbSchema, jsonLdScript, pageMetadata } from "@/lib/seo";
 import { internationalPackages } from "@/data/packages";
 import { PackageHero } from "@/components/packages/PackageHero";
 import { DesktopBookingCard } from "@/components/packages/StickyBookingBar";
@@ -27,11 +30,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const pkg = internationalPackages.find((p) => p.slug === slug);
   if (!pkg) return {};
-  return {
+  return pageMetadata({
     title: pkg.seo.title,
     description: pkg.seo.description,
     keywords: pkg.seo.keywords,
-  };
+    path: packageHref(pkg),
+    image: pkg.heroImage,
+  });
 }
 
 export default async function PackageDetailPage({ params }: PageProps) {
@@ -65,6 +70,17 @@ export default async function PackageDetailPage({ params }: PageProps) {
       </div>
 
       <PackageConversion pkg={pkg} />
+      <RelatedPackages pkg={pkg} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: CATEGORY_PAGES[pkg.category].label, path: CATEGORY_PAGES[pkg.category].path },
+            { name: pkg.title, path: packageHref(pkg) },
+          ])
+        )}
+      />
 
       {/* Mobile sticky bottom bar */}
       <StickyBookingBar pkg={pkg} />

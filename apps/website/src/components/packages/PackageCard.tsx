@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, Clock, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { packageHref } from "@/lib/package-links";
 import type { TravelPackage } from "@/types";
 
 interface PackageCardProps {
@@ -10,12 +11,7 @@ interface PackageCardProps {
 }
 
 export function PackageCard({ pkg, className }: PackageCardProps) {
-  const href =
-    pkg.category === "umrah"
-      ? `/umrah/${pkg.slug}`
-      : pkg.category === "honeymoon"
-      ? `/honeymoon/${pkg.slug}`
-      : `/packages/${pkg.slug}`;
+  const href = packageHref(pkg);
 
   return (
     <Link
