@@ -217,7 +217,7 @@ export function HeroSearch({ catalog }: { catalog: SearchCatalogItem[] }) {
   const optionCount = (field: FieldId, value: string) =>
     catalog.filter((p) =>
       field === "destination"
-        ? matchesDestination(p, value) && matchesStyle(p, style)
+        ? matchesDestination(p, value) // picking a place resets the style, so don't filter by it
         : field === "style"
         ? matchesDestination(p, destination) && matchesStyle(p, value)
         : matchesDestination(p, destination) && matchesStyle(p, style)
@@ -225,9 +225,11 @@ export function HeroSearch({ catalog }: { catalog: SearchCatalogItem[] }) {
 
   function select(field: FieldId, value: string) {
     const updated = { ...values, [field]: value };
-    if (field === "destination") {
-      const implied = impliedStyle(value);
-      if (implied && style === "") updated.style = implied;
+    // A new place starts a new search: style and timing go back to their defaults
+    // (style keeps only what the place itself implies, e.g. Maldives → Honeymoon)
+    if (field === "destination" && value !== destination) {
+      updated.style = impliedStyle(value) ?? "";
+      updated.timing = "";
     }
     if (field === "style" && value === "Umrah" && destination === "") updated.destination = "Umrah";
     FIELD_ORDER.forEach((f) => setters[f](updated[f]));
