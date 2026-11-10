@@ -1,8 +1,11 @@
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
-  /** "dark" = ink wordmark for light surfaces; "light" = white wordmark for photos / navy */
-  tone?: "dark" | "light";
+  /**
+   * "dark" = ink wordmark for light surfaces; "light" = white wordmark for photos / navy;
+   * "auto" = white at the top of the page, ink once <html data-scrolled> is set (navbar)
+   */
+  tone?: "dark" | "light" | "auto";
   size?: "md" | "lg";
   className?: string;
 }
@@ -18,7 +21,9 @@ export function Logo({ tone = "dark", size = "md", className }: LogoProps) {
         className={cn(
           "font-serif font-light tracking-tight transition-colors",
           size === "md" ? "text-xl" : "text-2xl",
-          tone === "dark" ? "text-brand-ink" : "text-white"
+          tone === "dark" && "text-brand-ink",
+          tone === "light" && "text-white",
+          tone === "auto" && "text-white [[data-scrolled]_&]:text-brand-ink"
         )}
       >
         Shine Star

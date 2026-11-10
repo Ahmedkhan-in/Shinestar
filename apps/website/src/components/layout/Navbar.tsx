@@ -26,26 +26,22 @@ function isActive(pathname: string, href: string) {
 
 export function Navbar() {
   const pathname = usePathname() ?? "/";
-  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 24);
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   // Close the drawer on route change
   useEffect(() => setMenuOpen(false), [pathname]);
 
-  const dark = isScrolled || menuOpen || lightHeroRoutes.includes(pathname);
+  // Scrolling is handled in CSS: a script in layout.tsx sets <html data-scrolled>, and the
+  // [[data-scrolled]_&]: classes below switch to the solid style — so the bar stays readable
+  // even if the page is scrolled before this component's JavaScript has loaded.
+  // `dark` covers the cases that don't depend on scrolling: open menu and light-hero pages.
+  const dark = menuOpen || lightHeroRoutes.includes(pathname);
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || menuOpen ? "bg-white shadow-card" : "bg-transparent"
+        menuOpen ? "bg-white shadow-card" : "bg-transparent [[data-scrolled]_&]:bg-white [[data-scrolled]_&]:shadow-card"
       )}
     >
       <nav
@@ -58,7 +54,7 @@ export function Navbar() {
           aria-label="Shine Star Tours and Travel — home"
           className="flex items-center py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
         >
-          <Logo tone={dark ? "dark" : "light"} />
+          <Logo tone={dark ? "dark" : "auto"} />
         </Link>
 
         {/* Desktop nav */}
@@ -72,8 +68,10 @@ export function Navbar() {
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "relative py-2 whitespace-nowrap text-label transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded",
-                    dark ? "text-brand-ink" : "text-white/90",
-                    active && (dark ? "text-brand-blue" : "text-white")
+                    dark
+                      ? "text-brand-ink"
+                      : "text-white/90 [[data-scrolled]_&]:text-brand-ink [[data-scrolled]_&]:hover:text-brand-blue",
+                    active && (dark ? "text-brand-blue" : "text-white [[data-scrolled]_&]:text-brand-blue")
                   )}
                 >
                   {link.label}
@@ -99,7 +97,9 @@ export function Navbar() {
             rel="noopener noreferrer"
             className={cn(
               "hidden xl:flex items-center gap-1.5 text-label transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded",
-              dark ? "text-brand-muted hover:text-brand-ink" : "text-white/80 hover:text-white"
+              dark
+                ? "text-brand-muted hover:text-brand-ink"
+                : "text-white/80 hover:text-white [[data-scrolled]_&]:text-brand-muted [[data-scrolled]_&]:hover:text-brand-ink"
             )}
           >
             <Phone size={14} aria-hidden="true" />
@@ -119,7 +119,7 @@ export function Navbar() {
         <button
           className={cn(
             "lg:hidden w-11 h-11 -mr-2 flex items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors",
-            dark ? "text-brand-ink" : "text-white"
+            dark ? "text-brand-ink" : "text-white [[data-scrolled]_&]:text-brand-ink"
           )}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}

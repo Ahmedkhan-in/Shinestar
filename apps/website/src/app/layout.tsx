@@ -45,14 +45,20 @@ export const metadata: Metadata = {
   },
 };
 
+const SCROLL_FLAG_SCRIPT = `(function(){var h=document.documentElement;function u(){if(window.scrollY>24)h.setAttribute("data-scrolled","");else h.removeAttribute("data-scrolled")}u();window.addEventListener("scroll",u,{passive:true})})();`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    // suppressHydrationWarning: the script below adds data-scrolled to <html> before React loads
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <body>
+        {/* Marks <html data-scrolled> once the page is scrolled, so the navbar turns solid
+            even before (or without) the app's JavaScript loading — see Navbar.tsx */}
+        <script dangerouslySetInnerHTML={{ __html: SCROLL_FLAG_SCRIPT }} />
         <Navbar />
         <main>{children}</main>
         <Footer />
