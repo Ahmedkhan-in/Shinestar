@@ -8,7 +8,7 @@ import type {
   CustomPlannerAnswers,
   PlannerPhase,
 } from "./types";
-import { getStepFlow } from "./planner-config";
+import { getVisibleSteps, impliedAnswers } from "./planner-config";
 
 // ─── Analytics (console-only — wire to your analytics provider when ready) ────
 
@@ -46,9 +46,11 @@ function savePartialLead(
 
 // ─── Session storage helpers ──────────────────────────────────────────────────
 
-type SessionState = {
+export type SessionState = {
   answers: CustomPlannerAnswers;
   stepIndex: number;
+  /** Steps answered by whatever opened the planner (e.g. the hero search) — never asked again */
+  prefilled?: StepId[];
 };
 
 function readSession(key: string): Partial<SessionState> {
@@ -62,7 +64,9 @@ function readSession(key: string): Partial<SessionState> {
 
 function writeSession(key: string, data: SessionState): void {
   try {
-    sessionStorage.setItem(key, JSON.stringify(data));
+    // Keep the prefilled list the opener stored unless the caller replaces it
+    const prefilled = data.prefilled ?? readSession(key).prefilled;
+    sessionStorage.setItem(key, JSON.stringify({ ...data, prefilled }));
   } catch {}
 }
 
@@ -104,11 +108,18 @@ export function useTripPlanner({
   context,
   sessionKey = `shine-star-planner-${mode}`,
 }: UseTripPlannerOptions): UseTripPlannerReturn {
-  const steps = getStepFlow(mode, context);
   const started = useRef(false);
 
   const [stepIndex, setStepIndex] = useState(0);
-  const [answers, setAnswers] = useState<CustomPlannerAnswers>({});
+  const [stored, setAnswers] = useState<CustomPlannerAnswers>({});
+  const [prefilled, setPrefilled] = useState<StepId[]>([]);
+
+  // Implied answers are derived, not stored, so changing the destination undoes them
+  const answers: CustomPlannerAnswers = { ...stored, ...impliedAnswers(stored, context) };
+  const steps = getVisibleSteps(mode, context, stored, prefilled);
+  // Read at advance time — an answer just given can hide later steps
+  const stepsRef = useRef(steps);
+  stepsRef.current = steps;
   const [direction, setDirection] = useState<"forward" | "back">("forward");
   const [phase, setPhase] = useState<PlannerPhase>("questions");
 
@@ -116,7 +127,9 @@ export function useTripPlanner({
   useEffect(() => {
     const saved = readSession(sessionKey);
     if (saved.answers) setAnswers(saved.answers);
-    if (typeof saved.stepIndex === "number" && saved.stepIndex < steps.length) {
+    if (saved.prefilled) setPrefilled(saved.prefilled);
+    const visible = getVisibleSteps(mode, context, saved.answers ?? {}, saved.prefilled);
+    if (typeof saved.stepIndex === "number" && saved.stepIndex < visible.length) {
       setStepIndex(saved.stepIndex);
     }
     trackPlannerEvent("planner_opened", { mode });
@@ -151,7 +164,7 @@ export function useTripPlanner({
 
   const advanceStep = useCallback(() => {
     setDirection("forward");
-    if (stepIndex < steps.length - 1) {
+    if (stepIndex < stepsRef.current.length - 1) {
       const next = stepIndex + 1;
       setStepIndex(next);
       setAnswers((prev) => {
@@ -163,7 +176,7 @@ export function useTripPlanner({
       trackPlannerEvent("planner_completed", {});
       setPhase("processing");
     }
-  }, [stepIndex, steps.length, sessionKey]);
+  }, [stepIndex, sessionKey]);
 
   const goBack = useCallback(() => {
     setDirection("back");
@@ -192,6 +205,7 @@ export function useTripPlanner({
     (clearStorage = true) => {
       setStepIndex(0);
       setAnswers({});
+      setPrefilled([]);
       setDirection("forward");
       setPhase("questions");
       if (clearStorage) clearSession(sessionKey);
@@ -204,7 +218,7 @@ export function useTripPlanner({
   return {
     steps,
     currentStepIndex: stepIndex,
-    currentStep: steps[stepIndex],
+    currentStep: steps[Math.min(stepIndex, steps.length - 1)],
     answers,
     direction,
     phase,

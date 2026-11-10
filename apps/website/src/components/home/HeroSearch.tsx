@@ -20,8 +20,8 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { getStepFlow } from "@/components/planner/planner-config";
-import type { CustomPlannerAnswers } from "@/components/planner/types";
+import type { SessionState } from "@/components/planner/use-trip-planner";
+import type { CustomPlannerAnswers, StepId } from "@/components/planner/types";
 import type { PackageCategory } from "@/types";
 import { cn, formatPrice } from "@/lib/utils";
 
@@ -129,27 +129,26 @@ function impliedStyle(destination: string): string | null {
 
 // ─── Session pre-fill ─────────────────────────────────────────────────────────
 
+// Hands the search choices to the planner; it skips every question answered here
 function preFillSession(destination: string, style: string, timing: string): void {
-  const answers: Partial<CustomPlannerAnswers> = {};
+  const answers: CustomPlannerAnswers = {};
+  const label = (list: Option[], value: string) => list.find((o) => o.value === value)?.label ?? value;
 
-  // Style takes priority for trip type; destination refines it
-  const resolvedDest =
-    style && style !== ""
-      ? style
-      : destination !== ""
-      ? destination
-      : undefined;
+  // Keep both the trip style and the place: "Honeymoon — Maldives", not just "Honeymoon"
+  if (style && destination && style !== destination) {
+    answers.destination = `${label(STYLES, style)} — ${label(DESTINATIONS, destination)}`;
+  } else if (style || destination) {
+    answers.destination = style || destination;
+  }
+  if (timing) answers.departure = timing;
 
-  if (resolvedDest) answers.destination = resolvedDest;
-  if (timing !== "") answers.departure = timing;
-
-  // Find first unanswered step in home flow to skip already-filled questions
-  const steps = getStepFlow("home");
-  const startIdx = steps.findIndex((s) => !answers[s as keyof CustomPlannerAnswers]);
-  const effectiveStart = startIdx === -1 ? steps.length - 1 : Math.max(0, startIdx);
-
+  const session: SessionState = {
+    answers,
+    stepIndex: 0,
+    prefilled: Object.keys(answers) as StepId[],
+  };
   try {
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify({ answers, stepIndex: effectiveStart }));
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
   } catch {}
 }
 

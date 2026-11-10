@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { packagePlannerContext } from "@/components/planner/planner-config";
 import { whatsappLink } from "@/data/site";
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
@@ -69,12 +70,7 @@ export function StickyBookingBar({ pkg }: StickyBookingBarProps) {
       {plannerOpen && (
         <CustomPricePlanner
           mode="landing"
-          context={{
-            packageName: pkg.title,
-            destination: pkg.destination,
-            category: pkg.category,
-            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
-          }}
+          context={packagePlannerContext(pkg)}
           sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
@@ -141,12 +137,7 @@ export function DesktopBookingCard({ pkg }: StickyBookingBarProps) {
       {plannerOpen && (
         <CustomPricePlanner
           mode="landing"
-          context={{
-            packageName: pkg.title,
-            destination: pkg.destination,
-            category: pkg.category,
-            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
-          }}
+          context={packagePlannerContext(pkg)}
           sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />

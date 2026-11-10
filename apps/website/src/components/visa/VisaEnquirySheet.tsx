@@ -30,6 +30,8 @@ const VISA_TYPES: Option[] = [
 
 // Visa types that only ever go to one country — the country question is filled in and skipped
 const IMPLIED_DESTINATION: Record<string, string> = { Umrah: "Saudi Arabia" };
+// Umrah e-visas don't depend on past travel, so that question is only friction there
+const NO_TRAVEL_HISTORY = new Set(["Umrah"]);
 
 const STEPS: { id: StepId; question: string; options?: Option[]; columns?: 1 | 2 | 3 }[] = [
   { id: "visaType", question: "Which visa do you need?", options: VISA_TYPES, columns: 1 },
@@ -94,8 +96,13 @@ const SUMMARY_LABELS: Record<Exclude<StepId, "whatsapp">, string> = {
 
 type Answers = Partial<Record<StepId, string>> & { countryCode?: string };
 
-const isSkipped = (a: Answers, index: number) =>
-  STEPS[index].id === "destination" && !!a.visaType && a.visaType in IMPLIED_DESTINATION;
+const isSkipped = (a: Answers, index: number) => {
+  const id = STEPS[index].id;
+  if (!a.visaType) return false;
+  if (id === "destination") return a.visaType in IMPLIED_DESTINATION;
+  if (id === "travelHistory") return NO_TRAVEL_HISTORY.has(a.visaType);
+  return false;
+};
 
 interface VisaEnquirySheetProps {
   onClose: () => void;
@@ -110,7 +117,7 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
   }));
   // Start at the first question that isn't already answered by the button that opened the sheet
   const [stepIndex, setStepIndex] = useState(() => {
-    const first = STEPS.findIndex((s) => s.id !== "whatsapp" && !answers[s.id]);
+    const first = STEPS.findIndex((s, i) => s.id !== "whatsapp" && !answers[s.id] && !isSkipped(answers, i));
     return first === -1 ? 0 : first;
   });
   const [direction, setDirection] = useState<"forward" | "back">("forward");
@@ -128,7 +135,10 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
   }, [stepIndex, phase]);
 
   const step = STEPS[stepIndex];
-  const progress = ((stepIndex + 1) / STEPS.length) * 100;
+  // Count only the questions this visitor will see, so skipped ones don't make the counter jump
+  const visible = STEPS.map((_, i) => i).filter((i) => !isSkipped(answers, i));
+  const position = Math.max(0, visible.indexOf(stepIndex));
+  const progress = ((position + 1) / visible.length) * 100;
   const animationClass = direction === "forward" ? "animate-slide-from-right" : "animate-slide-from-left";
 
   // `a` is passed when answers were just changed and state hasn't caught up yet
@@ -186,7 +196,7 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
       title={phase === "summary" ? "Your visa enquiry" : "Check my visa requirements"}
     >
       {phase === "questions" && (
-        <PlannerProgress value={progress} stepIndex={stepIndex} totalSteps={STEPS.length} />
+        <PlannerProgress value={progress} stepIndex={position} totalSteps={visible.length} />
       )}
 
       <div ref={contentRef} className="px-6 py-6 pb-8">
@@ -216,7 +226,7 @@ export function VisaEnquirySheet({ onClose, initialType, initialDestination }: V
           <>
             <div key={`${stepIndex}-${direction}`} className={animationClass}>
               <p className="text-body-sm text-brand-ink/60 mb-2" aria-live="polite">
-                {stepIndex + 1} of {STEPS.length}
+                {position + 1} of {visible.length}
               </p>
               <h2 data-step-focus tabIndex={-1} className="font-serif text-display-sm text-brand-ink leading-tight mb-6 focus:outline-none">
                 {step.question}

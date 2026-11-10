@@ -1,4 +1,45 @@
-import type { StepId, PlannerMode, LandingContext } from "./types";
+import type { TravelPackage } from "@/types";
+import type { StepId, PlannerMode, LandingContext, CustomPlannerAnswers } from "./types";
+
+/**
+ * What the planner knows on a package page. Every button on the page uses this, so
+ * the same questions are skipped wherever the visitor starts. A package page is a
+ * fixed-length trip, so its length is never asked.
+ */
+export function packagePlannerContext(pkg: TravelPackage): LandingContext {
+  return {
+    packageName: pkg.title,
+    destination: pkg.destination,
+    category: pkg.category,
+    fixedDuration: pkg.duration,
+  };
+}
+
+// ─── Answers that never need asking ───────────────────────────────────────────
+
+/**
+ * Answers that follow from earlier ones or from the page the planner opened on.
+ * Their questions are skipped and the value is filled in for the summary and message.
+ * Add a rule here rather than in a component, so every entry point gets it.
+ */
+export function impliedAnswers(
+  answers: CustomPlannerAnswers,
+  context?: LandingContext
+): Partial<CustomPlannerAnswers> {
+  const honeymoon = context?.category === "honeymoon" || /honeymoon/i.test(answers.destination ?? "");
+  return honeymoon ? { passengers: "2 people" } : {};
+}
+
+/** The questions actually shown: the flow minus implied answers and ones answered before opening. */
+export function getVisibleSteps(
+  mode: PlannerMode,
+  context: LandingContext | undefined,
+  answers: CustomPlannerAnswers,
+  prefilled: StepId[] = []
+): StepId[] {
+  const implied = impliedAnswers(answers, context);
+  return getStepFlow(mode, context).filter((s) => !(s in implied) && !prefilled.includes(s));
+}
 
 // ─── Step flow logic ──────────────────────────────────────────────────────────
 

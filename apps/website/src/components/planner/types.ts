@@ -36,7 +36,7 @@ export interface LandingContext {
   category: PackageCategory;
   /**
    * If set the planner skips the duration question and confirms the fixed
-   * duration instead (e.g. Umrah 7/10/14-day packages).
+   * duration instead — set for every package page (see packagePlannerContext).
    */
   fixedDuration?: string;
 }

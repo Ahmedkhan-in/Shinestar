@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
+import { packagePlannerContext } from "@/components/planner/planner-config";
 import { whatsappLink } from "@/data/site";
 import Image from "next/image";
 import { Check, X, Star, Plus, Minus } from "lucide-react";
@@ -413,12 +414,7 @@ export function PackageConversion({ pkg }: { pkg: TravelPackage }) {
       {plannerOpen && (
         <CustomPricePlanner
           mode="landing"
-          context={{
-            packageName: pkg.title,
-            destination: pkg.destination,
-            category: pkg.category,
-            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
-          }}
+          context={packagePlannerContext(pkg)}
           sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { packagePlannerContext } from "@/components/planner/planner-config";
 import Image from "next/image";
 import { useState } from "react";
 import { Clock, MapPin, ChevronDown } from "lucide-react";
@@ -118,12 +119,7 @@ export function PackageHero({ pkg }: PackageHeroProps) {
       {plannerOpen && (
         <CustomPricePlanner
           mode="landing"
-          context={{
-            packageName: pkg.title,
-            destination: pkg.destination,
-            category: pkg.category,
-            fixedDuration: pkg.category === "umrah" ? pkg.duration : undefined,
-          }}
+          context={packagePlannerContext(pkg)}
           sessionKey={`shine-star-planner-${pkg.slug}`}
           onClose={() => setPlannerOpen(false)}
         />
