@@ -76,7 +76,7 @@ const config: Config = {
         "premium": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       animation: {
-        "marquee":      "marquee 32s linear infinite",
+        "marquee":      "marquee 18s linear infinite", // airline strip: full loop time
         "fade-up":      "fadeUp 0.6s ease forwards",
         "fade-in":      "fadeIn 0.45s ease forwards",
       },
