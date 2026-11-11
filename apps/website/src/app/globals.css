@@ -8,6 +8,14 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Never let the page scroll sideways on phones. Slide-in animations start a little
+     off to the side, and one over-wide element is enough to let a swipe drag the whole
+     page. "clip" (unlike "hidden") doesn't break position: sticky. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     font-family: var(--font-inter), system-ui, sans-serif;
     color: #172B45;

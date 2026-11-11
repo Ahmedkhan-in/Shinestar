@@ -10,7 +10,7 @@ export function MapSection({ heading = "Find us in Karachi", extra }: { heading?
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-content mx-auto px-4 md:px-8">
-        <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 md:gap-16 items-start">
+        <div className="grid grid-cols-[minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 md:gap-16 items-start">
 
           {/* Contact info */}
           <Reveal>
@@ -82,8 +82,8 @@ export function MapSection({ heading = "Find us in Karachi", extra }: { heading?
           {/* Map — live Google Maps embed */}
           <Reveal delay={150} direction="left">
             <div
-              className="relative rounded-card overflow-hidden border border-surface-grey bg-surface-grey min-h-[300px]"
-              style={{ aspectRatio: "4/3" }}
+              // Fixed height on phones: min-height + aspect-ratio together forced a 400px width there
+              className="relative rounded-card overflow-hidden border border-surface-grey bg-surface-grey h-[300px] md:h-auto md:aspect-[4/3]"
             >
               <iframe
                 src={MAPS_EMBED_SRC}
